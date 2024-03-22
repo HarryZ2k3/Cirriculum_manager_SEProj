@@ -1,0 +1,10 @@
+import Transition from '../../utils/Transition'
+import { Link } from 'react-router-dom'
+
+export default function Grade() {
+	return (
+		<Transition className="flex justify-center items-center flex-col">
+            <h1>Welcome to Grade page</h1>
+		</Transition>
+	)
+}
