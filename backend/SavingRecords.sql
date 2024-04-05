@@ -54,8 +54,9 @@ foreign key (CourseID) references COURSES.InforList(CourseID)
 )
 
 CREATE TABLE STUDENT.TA(
-TAID bigint not null,
+
 CourseID bigint not null,
+TAID bigint not null,
 primary key(TAID, CourseID),
 foreign key (TAID) references STUDENT.InforList(StudentID),
 foreign key (CourseID) references COURSES.InforList(CourseID),
@@ -152,3 +153,12 @@ AdminID bigint not null primary key,
 Username varchar(50) not null,
 Password varchar(50) not null,
 )
+
+ALTER TABLE STUDENT.Grades
+ALTER COLUMN Midterm DECIMAL(5,2)
+
+ALTER TABLE STUDENT.Grades
+ALTER COLUMN Final DECIMAL(5,2)
+
+ALTER TABLE STUDENT.Grades
+ALTER COLUMN Inclass DECIMAL(5,2)
