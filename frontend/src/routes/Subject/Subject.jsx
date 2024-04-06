@@ -52,8 +52,8 @@ export default function Subject() {
                 <div style={{ flex: 1 }}>
                    
                     {/* <RenderLineChart labels={ labels} data={data} /> */}
-                   {selectedSubject && 
-                    <SubjectBar selectedSubject={selectedSubject} />}
+                   {/* {selectedSubject && 
+                    <SubjectBar selectedSubject={selectedSubject} />} */}
                 </div>
             </div>
         </div>
