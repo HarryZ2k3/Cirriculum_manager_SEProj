@@ -1,0 +1,23 @@
+.Subject_root {
+    max-width: 1280px;
+    width: max-content;
+}
+
+.subject-row:hover {
+    background-color: #E0E0E0; /* Màu nền thay đổi khi hover */
+    cursor: pointer; /* Con trỏ chuột biến thành pointer */
+    transition: background-color 0.3s ease; /* Hiệu ứng transition khi hover */
+    border: 1px solid black;
+}
+.subjectTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.subjectTable th, .subjectTable td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
