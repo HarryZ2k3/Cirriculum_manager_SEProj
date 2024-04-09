@@ -6,7 +6,7 @@ import { FaRegEdit } from 'react-icons/fa'
 
 export default function Home() {
 	return (
-		<Transition className="flex flex-growq">
+		<Transition className="flex flex-grow divide-x-2 divide-orange-600">
 			{/* Main content 3/4 */}
 			<div className="flex w-2/3 flex-grow flex-col overflow-hidden px-8 py-4">
 				<h1 className="text-left align-middle text-[3rem] tracking-wider">
@@ -29,7 +29,7 @@ export default function Home() {
 			</div>
 
 			{/* Side bar 1/4 */}
-			<div className="flex w-1/3 flex-grow flex-col justify-between overflow-hidden px-8 py-4">
+			<div className="flex w-1/4 flex-grow flex-col justify-between overflow-hidden px-8 py-4">
 				<div className="flex h-full w-full flex-col gap-4 overflow-y-auto">
 					{/* Fake data */}
 					{Array.from({ length: 4 }, (_, i) => (

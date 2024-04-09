@@ -6,7 +6,8 @@ import { FaRegEdit } from 'react-icons/fa'
 
 export default function Home() {
 	return (
-		<Transition className="flex flex-growq">
+		<Transition className="flex flex-growq
+		">
 			{/* Main content 3/4 */}
 			<div className="flex w-2/3 flex-grow flex-col overflow-hidden px-8 py-4">
 				<h1 className="text-left align-middle text-[3rem] tracking-wider">

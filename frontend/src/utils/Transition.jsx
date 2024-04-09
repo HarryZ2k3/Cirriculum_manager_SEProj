@@ -5,7 +5,7 @@ export default function Transition({ children, className }) {
 	return (
 		<AnimatePresence mode="wait">
 			<motion.div
-				className={className}
+				className={'flex-grow ' + className}
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
