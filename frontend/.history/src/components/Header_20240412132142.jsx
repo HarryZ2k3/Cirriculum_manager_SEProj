@@ -21,12 +21,12 @@ export default function Header() {
 						</Link>
 					</li>
 					<li className="flex w-full justify-center">
-						<Link className="p-4" to="/social">
+						<Link className="p-4" to="/">
 							Social
 						</Link>
 					</li>
 					<li className="flex w-full justify-center">
-						<Link className="p-4" to="/subject">
+						<Link className="p-4" to="/">
 							Subject
 						</Link>
 					</li>
