@@ -3,10 +3,16 @@ import Transition from '../../utils/Transition'
 // Components
 import { Announcement, TodayClass } from './HomeComponents'
 import { FaRegEdit } from 'react-icons/fa'
+//import { Link } from 'react-router-dom'
 
 export default function Home() {
 	return (
 		<Transition className="flex flex-grow bg-gradient-to-b from-background_top from-0% via-background_mid via-66% to-background_bottom to-100%">
+			{/* <Link to="/login">
+				<button className="my-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+					Login please
+				</button>
+			</Link> */}
 			{/* Main content 3/4 */}
 			<div className="flex w-2/3 flex-grow flex-col overflow-hidden px-8 py-4">
 				<h1 className="text-left align-middle text-[3rem] text-text_blue tracking-wider">
