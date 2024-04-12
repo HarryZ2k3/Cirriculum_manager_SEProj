@@ -7,6 +7,8 @@ import Register from './routes/LoginSign/Register'
 import Grade from './routes/Grade/Grade'
 import Subject from './routes/Subject/Subject'
 import Schedule from './routes/Schedule/Schedule'
+import LoginSignUp from './routes/LoginSign/LoginSignUp/LoginSignUp'
+
 export default function AnimatedRoutes() {
 	return (
 		<Routes>
@@ -17,6 +19,7 @@ export default function AnimatedRoutes() {
 			<Route path="/login" element= {<Login/>} />
 			<Route path="/register" element= {<Register/>} />
 			<Route path="*" element={<NotFound />} />
+			<Route path="/loginv2" element={<LoginSignUp/>}/>
 		</Routes>
 	)
 }
