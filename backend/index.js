@@ -33,7 +33,7 @@ app.use(express.json());
 
 //route init
 app.get ('/', async (req, res)=>{ 
-    // SELECT * FROM COURSES.InforList
+    // Xem điểm
     const pool = await connect;
     const sqlString = "SELECT CourseName, Inclass,Midterm, Final 
 FROM STUDENT.Grades g
