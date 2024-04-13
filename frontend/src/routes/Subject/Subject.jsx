@@ -8,16 +8,17 @@ import exampleDarta from "./subject.json"
 import axios from 'axios'
 //import SubjectBar from  './HandleDataChart.jsx';
 import BarChart from './BarChart.jsx';
+import SelectionTable from './SelectionTable.jsx';
 
-const SubjectDetails = ({ selectedSubject }) => (
-    <div>
-        <h2>{selectedSubject.name}</h2>
-        <p>Inclass: {selectedSubject.inclass}</p>
-        <p>Mid: {selectedSubject.mid}</p>
-        <p>Final: {selectedSubject.final}</p>
-        <p>Average: {selectedSubject.avg.toFixed(2)}</p>
-    </div>
-);
+// const SubjectDetails = ({ selectedSubject }) => (
+//     <div>
+//         <h2>{selectedSubject.name}</h2>
+//         <p>Inclass: {selectedSubject.inclass}</p>
+//         <p>Mid: {selectedSubject.mid}</p>
+//         <p>Final: {selectedSubject.final}</p>
+//         <p>Average: {selectedSubject.avg.toFixed(2)}</p>
+//     </div>
+// );
 
 export default function Subject() {
     const [selectedSubject, setSelectedSubject] = useState(null);
@@ -27,27 +28,28 @@ export default function Subject() {
         const testApi = async () => {
             await setDataSubject(subjs); 
             const resp = await axios.get('https://api.sampleapis.com/coffee/hot');
-            //console.log(resp.data)
         }
-        //console.log(exampleDarta);
         testApi()
            
     }, [])
-    // console.log(SubjectBar(selectedSubject));
+    
     console.log("call Suject Function");
     const handleSubjectClick = (subject) => {
-        // console.log("subject", subject)
         setSelectedSubject(subject);
     };    
     return (
         <div className='Subject_root'>
             <h1>Welcome to Subject page</h1>
+            <div>
+                {/* <SelectionTable trancript ={subjs}  onSelection = {handleSubjectClick}/> */}
+
+            </div>
             <div style={{ display: 'flex' }}>
                 <div style={{ flex: 1 }}>
-                    {dataSubject.length > 0 ? 
+                    {/* {dataSubject.length > 0 ? 
                         <SubjectTable subjects={dataSubject} onSubjectClick={handleSubjectClick} />
                         : <p>loading...</p>
-                    }
+                    } */}
                 </div>
                 <div style={{ flex: 1 }}>
                    
@@ -78,6 +80,7 @@ function SubjectBar(props){
     // return <>{JSON.stringify(selectedSubject)}</>
     
 }
+
 //------------------------------------------------------------------------------
 class MySubject {
     name;
