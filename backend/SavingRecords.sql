@@ -118,4 +118,33 @@ ADD CONSTRAINT unique_sa unique(SAID);
 ALTER TABLE LECTURERS.InforList
 ADD CONSTRAINT unique_la unique(AccountID);
 
+//xem curriculum 
+SELECT CourseName, Credit
+FROM DEPARTMENTS.curriculum e
+JOIN COURSES.InforList c  ON c.CourseID = e.CourseID
+JOIN DEPARTMENTS.InforList i ON e.DepartmentID = i.DepartmentID
+JOIN STUDENT.InforList u ON e.DepartmentID = u.DepartmentID
+WHERE u.StudentID = (SELECT s.StudentID 
+FROM STUDENT.InforList s
+JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+WHERE d.Username = 'Anh12')
+
+//xem điểm
+SELECT CourseName, Inclass,Midterm, Final 
+FROM STUDENT.Grades g
+JOIN COURSES.InforList c  ON c.CourseID = g.CourseID
+WHERE g.StudentID = (SELECT StudentID 
+FROM STUDENT.InforList s
+JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+WHERE d.Username = 'Anh12') AND SemesterID = (
+SELECT SemesterID
+FROM SEMESTERS.InforList
+WHERE SemesterNumber = 2 AND YEAR =2020 )
+
+
+//xác định studentid từ username: 
+SELECT s.StudentID 
+FROM STUDENT.InforList s
+JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+WHERE d.Username = 'Anh12'
 
