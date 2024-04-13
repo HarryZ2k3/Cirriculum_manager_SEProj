@@ -35,7 +35,17 @@ app.use(express.json());
 app.get ('/', async (req, res)=>{ 
     // SELECT * FROM COURSES.InforList
     const pool = await connect;
-    const sqlString = "SELECT * FROM COURSES.InforList";
+    const sqlString = "SELECT CourseName, Inclass,Midterm, Final 
+FROM STUDENT.Grades g
+JOIN COURSES.InforList c  ON c.CourseID = g.CourseID
+WHERE g.StudentID = (SELECT StudentID 
+FROM STUDENT.InforList s
+JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+WHERE d.Username = 'Anh12') AND SemesterID = (
+SELECT SemesterID
+FROM SEMESTERS.InforList
+WHERE SemesterNumber = 2 AND YEAR =2020 )
+";
     return await pool.request().query(sqlString,function(err,data){
       // console.log(err,data.recordset);
       res.send({result: data.recordset});
