@@ -64,27 +64,27 @@ VALUES ('Nguyen Van Anh', 'Male', 'Principle'),
 ('Nguyen Ngoc Hai', 'Male', 'Adjunct Professor'),
 ('Nguyen Thai Binh', 'Male', 'Adjunct Professor')
 
-INSERT INTO COURSES.InforList (CourseName, Credit, Major)
-VALUES ('DLD', 2, 'Technology'),
-('Calculus 1', 3, 'Arts'),
-('Physic 2', 3, 'BA'),
-('Physic 1', 4, 'IT'),
-('Calculus 2', 4, 'Education'),
-('Calculus 3', 4, 'Bioengineering'),
-('Oop', 5, 'Genetics'),
-('Pdm', 4, 'Psychology'),
-('Se', 4, 'Marketing'),
-('Tmc', 2, 'Finance'),
-('Chemistry 1', 2, 'IT'),
-('Chemistry 2', 2, 'Architecture'),
-('History and Politics', 4, 'Law and Politics'),
-('Materials Science', 3, 'Construction trades'),
-('Modern Languages and Linguistics', 4, 'Communications'),
-('Medicine', 3, 'Bioengineering'),
-('Computer Science and Philosophy', 4, 'IT'),
-('Law', 3, 'Law and Politics'),
-('Psychology, Philosophy and Linguistics', 4, 'Psychology'),
-('Biology', 3, 'Natural Sciences')
+INSERT INTO COURSES.InforList (CourseName, Credit)
+VALUES ('DLD', 2),
+('Calculus 1', 3),
+('Physic 2', 3),
+('Physic 1', 4),
+('Calculus 2', 4),
+('Calculus 3', 4),
+('Oop', 5),
+('Pdm', 4),
+('Se', 4),
+('Tmc', 2),
+('Chemistry 1', 2),
+('Chemistry 2', 2),
+('History and Politics', 4),
+('Materials Science', 3),
+('Modern Languages and Linguistics', 4),
+('Medicine', 3),
+('Computer Science and Philosophy', 4),
+('Law', 3),
+('Psychology, Philosophy and Linguistics', 4),
+('Biology', 3)
 
 
 INSERT INTO ACCOUNT.StudentAccounts (SAID, Username, Password)
@@ -112,10 +112,15 @@ VALUES (1,'Anh12', '1234'),
 
 
 
-DBCC CHECKIDENT ('SEMESTERS.InforList', RESEED, 0); (quan trong)
+DBCC CHECKIDENT ('SEMESTERS.InforList', RESEED, 0); 
+
+ALTER TABLE STUDENT.InforList
+ADD DepartmentID bigint;
+
+ALTER TABLE COURSES.InforList
+DROP COLUMN Major; (quan trong)
 
 
- 
 INSERT INTO SEMESTERS.InforList (SemesterNumber, StartDate, EndDate, Year)
 VALUES (1, '2020-9-4', '2021-1-24', 2020),
 (1, '2021-02-19', '2021-06-06', 2021),
@@ -182,26 +187,31 @@ VALUES (1, 2),
 (20, 12
 
 INSERT INTO DEPARTMENTS.curriculum (DepartmentID, CourseID)
-VALUES (1, 10),
-(2, 9),
-(3, 8),
+VALUES (1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(2, 2),
+(2, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(3, 3),
+(3, 4),
+(3, 5),
+(3, 6),
+(3, 7),
+(4, 4),
+(4, 5),
 (4, 6),
-(5, 4),
-(6, 5),
-(7, 2),
-(8, 1),
-(9, 7),
-(10, 3),
-(11, 12),
-(12, 15),
-(13, 11),
-(14, 19),
-(15, 13),
-(16, 17),
-(17, 18),
-(18, 20),
-(19, 14),
-(20, 16)
+(4, 7),
+(4, 8),
+(5, 6),
+(5, 7),
+(5, 8),
+(5, 9),
+(5, 10)
 
 
 INSERT INTO DEPARTMENTS.TaughtPlace (RoomID, CourseID)
