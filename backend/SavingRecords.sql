@@ -1,70 +1,98 @@
-CREATE DATABASE STUDENTRECORDS /** CREATE DATABASE VÀ CREATE SCHEMA KHÔNG THỂ CÙNG THỰC HIỆN TRONG 1 QUERY NÊN PHẢI TẠO QUERY MỚI CHO CREATE DATABASE VÀ RUN */
 
-/** SAU ĐÓ TIẾP TỤC TẠO QUERY MỚI ĐỂ THỰC HIỆN CHỨC NĂNG CREATE SCHEMA VÀ CREATE TABLE CHO DATABASE */
-/**QUERY MỚI SẼ LẤY TOÀN BỘ SQL COMMANDS BẮT ĐẦU TỪ DÒNG COMMENT NÀY ĐỔ XUỐNG*/
 
-USE STUDENTRECORDS; 
-GO
+CREATE SCHEMA LECTURERS
+CREATE SCHEMA ACCOUNT
+CREATE SCHEMA DEPARTMENTS
+CREATE SCHEMA COURSES
+CREATE SCHEMA SEMESTERS
 
-CREATE SCHEMA SEMESTERS;
-GO
 
-CREATE TABLE SEMESTERS.Semesters(
-SemesterID bigint identity(1,1) not null primary key, 
-SemesterNumber int not null,
-StartDate date not null,
-EndDate date not null,
-Year int not null,
+
+
+CREATE TABLE ACCOUNT.AdminAccounts(
+AdminID bigint not null primary key, 
+Username varchar(50) not null,
+Password varchar(50) not null
 )
 
 
-CREATE SCHEMA COURSES;
-GO
+
+CREATE TABLE ACCOUNT.LecturerAccounts(
+LAID bigint not null primary key, 
+Username varchar(50) not null,
+Password varchar(50) not null
+)
+
+CREATE TABLE ACCOUNT.StudentAccounts(
+SAID bigint not null primary key, 
+Username varchar(50) not null,
+Password varchar(50) not null
+)
+
+CREATE TABLE LECTURERS.InforList (
+	LID BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
+	LName VARCHAR(35) not null ,
+	Gender VARCHAR(6) not null,
+	Position VARCHAR(50) not null, 
+             AccountID bigint not null
+             foreign key (AccountID) references ACCOUNT.LecturerAccounts(LAID)
+);
+
+CREATE TABLE STUDENT.InforList (
+StudentID bigint identity(1,1) not null,
+StudentName varchar(50) not null,
+AchievedCredit int,
+GPA decimal(3,2)
+Gender varchar(6),
+SAID bigint not null, 
+DepartmentID bigint not null,
+primary key(StudentID),
+foreign key (SAID) references ACCOUNT.StudentAccounts(SAID),
+foreign key (DepartmentID) references DEPARTMENTS.InforList(DepartmentID)
+)
 
 CREATE TABLE COURSES.InforList (
 CourseID bigint identity(1,1) not null,
 CourseName varchar(50) not null,
 Credit int not null,
-Major varchar(50) not null,
-primary key(CourseID),
+primary key(CourseID)
 )
-
 ALTER TABLE COURSES.InforList
 ADD UNIQUE (CourseName);
 
+CREATE TABLE DEPARTMENTS.InforList(
+DepartmentID bigint identity(1,1) not null,
+DepartmentName varchar (50) not null, 
+primary key(DepartmentID),
+)
+ALTER TABLE DEPARTMENTS.InforList
+ADD UNIQUE (DepartmentName);
 
-CREATE SCHEMA STUDENT;
-GO
 
-CREATE TABLE STUDENT.InforList (
-StudentID bigint identity(1,1) not null,
-StudentName varchar(50) not null,
-primary key(StudentID),
-Major varchar(50) not null,
+CREATE TABLE SEMESTERS.InforList(
+SemesterID bigint identity(1,1) not null primary key, 
+SemesterNumber int not null,
+StartDate date not null,
+EndDate date not null,
+Year int not null
 )
 
-ALTER TABLE STUDENT.InforList
-ADD AchievedCredit INT,
-    GPA DECIMAL(3,2),
-    Gender VARCHAR(6);
+CREATE TABLE DEPARTMENTS.Room(
+RoomID bigint not null,
+RoomNumber varchar(50) not null,
+primary key(RoomID)
+)
 
 
+ALTER table departments.room 
+add unique (RoomNumber)
 
-CREATE TABLE STUDENT.ENROLLMENT(
-StudentID bigint not null,
+CREATE TABLE DEPARTMENTS.curriculum(
+DepartmentID bigint not null, 
 CourseID bigint not null,
-primary key(StudentID, CourseID),
-foreign key (StudentID) references STUDENT.InforList(StudentID),
+primary key(DepartmentID, CourseID),
+foreign key (DepartmentID) references DEPARTMENTS.InforList(DepartmentID),
 foreign key (CourseID) references COURSES.InforList(CourseID)
-)
-
-CREATE TABLE STUDENT.TA(
-
-CourseID bigint not null,
-TAID bigint not null,
-primary key(TAID, CourseID),
-foreign key (TAID) references STUDENT.InforList(StudentID),
-foreign key (CourseID) references COURSES.InforList(CourseID),
 )
 
 CREATE TABLE STUDENT.Grades(
@@ -74,96 +102,20 @@ SemesterID bigint not null,
 primary key(StudentID,CourseID,SemesterID),
 foreign key (StudentID) references STUDENT.InforList(StudentID),
 foreign key (CourseID) references COURSES.InforList(CourseID),
-foreign key (SemesterID) references SEMESTERS.InforList(SemesterID),
+foreign key (SemesterID) references SEMESTERS.InforList(SemesterID)
 )
 
 ALTER TABLE STUDENT.Grades
-ADD Midterm DECIMAL(4,2) CHECK (Midterm >= 0 AND Midterm <= 100),
-    Final DECIMAL(4,2) CHECK (Final >= 0 AND Final <= 100),
-    Inclass DECIMAL(4,2) CHECK (Inclass >= 0 AND Inclass <= 100);
+ADD Midterm DECIMAL(5,2) CHECK (Midterm >= 0 AND Midterm <= 100),
+    Final DECIMAL(5,2) CHECK (Final >= 0 AND Final <= 100),
+    Inclass DECIMAL(5,2) CHECK (Inclass >= 0 AND Inclass <= 100)
 
 
- 
-
-CREATE SCHEMA DEPARTMENTS;
-GO
-
-CREATE TABLE DEPARTMENTS.InforList(
-DepartmentID bigint identity(1,1) not null,
-DepartmentName varchar (50) not null, 
-primary key(DepartmentID),
-)
-
-ALTER TABLE DEPARTMENTS.InforList
-ADD UNIQUE (DepartmentName);
-
-CREATE TABLE DEPARTMENTS.Room(
-RoomID bigint not null,
-RoomNumber varchar(50) not null,
-primary key(RoomID),
-)
-ALTER table DEPARTMENTS.room 
-add unique (RoomNumber)
+ALTER TABLE STUDENT.InforList
+ADD CONSTRAINT unique_sa unique(SAID); 
 
 
-CREATE TABLE DEPARTMENTS.curriculum(
-DepartmentID bigint not null, 
-CourseID bigint not null,
-primary key(DepartmentID, CourseID),
-foreign key (DepartmentID) references DEPARTMENTS.InforList(DepartmentID),
-foreign key (CourseID) references COURSES.InforList(CourseID),
-)
-
-CREATE TABLE DEPARTMENTS.TaughtPlace(
-RoomID bigint not null,
-CourseID bigint not null,
-primary key (RoomID,CourseID),
-foreign key (RoomID) references DEPARTMENTS.room(RoomID),
-foreign key (CourseID) references COURSES.InforList(CourseID),
-)
+ALTER TABLE LECTURERS.InforList
+ADD CONSTRAINT unique_la unique(AccountID);
 
 
- 
-
- 
-
-CREATE SCHEMA LECTURERS;
-GO
-
-CREATE TABLE LECTURERS.InforList (
-	LID BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
-	LName VARCHAR(35) not null ,
-	Gender VARCHAR(6) not null,
-	Position VARCHAR(50),
-)
-
-
-CREATE SCHEMA ACCOUNT;
-GO
-
-CREATE TABLE ACCOUNT.StudentAccounts(
-SAID bigint not null primary key, 
-Username varchar(50) not null,
-Password varchar(50) not null,
-)
-
-CREATE TABLE ACCOUNT.LecturerAccounts(
-LAID bigint not null primary key, 
-Username varchar(50) not null,
-Password varchar(50) not null,
-)
-
-CREATE TABLE ACCOUNT.AdminAccounts(
-AdminID bigint not null primary key, 
-Username varchar(50) not null,
-Password varchar(50) not null,
-)
-
-ALTER TABLE STUDENT.Grades
-ALTER COLUMN Midterm DECIMAL(5,2)
-
-ALTER TABLE STUDENT.Grades
-ALTER COLUMN Final DECIMAL(5,2)
-
-ALTER TABLE STUDENT.Grades
-ALTER COLUMN Inclass DECIMAL(5,2)
