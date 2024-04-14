@@ -3,7 +3,7 @@ GO
 	
 USE STUDENTRECORDS; 
 GO
-
+// sau khi tạo và use database thì xóa và bắt đầu chạy các commands khác sau dòng này 
 
 
 CREATE SCHEMA LECTURERS
@@ -124,7 +124,7 @@ ADD CONSTRAINT unique_sa unique(SAID);
 ALTER TABLE LECTURERS.InforList
 ADD CONSTRAINT unique_la unique(AccountID);
 
-//xem curriculum 
+/*xem curriculum*/
 SELECT CourseName, Credit
 FROM DEPARTMENTS.curriculum e
 JOIN COURSES.InforList c  ON c.CourseID = e.CourseID
@@ -135,7 +135,7 @@ FROM STUDENT.InforList s
 JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
 WHERE d.Username = 'Anh12')
 
-//xem điểm
+/*xem điểm*/
 SELECT CourseName, Inclass,Midterm, Final 
 FROM STUDENT.Grades g
 JOIN COURSES.InforList c  ON c.CourseID = g.CourseID
@@ -148,7 +148,7 @@ FROM SEMESTERS.InforList
 WHERE SemesterNumber = 2 AND YEAR =2020 )
 
 
-//xác định studentid từ username: 
+/*xác định studentid từ username*/
 SELECT s.StudentID 
 FROM STUDENT.InforList s
 JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
