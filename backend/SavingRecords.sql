@@ -3,9 +3,7 @@ GO
 	
 USE STUDENTRECORDS; 
 GO
-/*sau khi tạo và use database thì xóa và bắt đầu chạy các commands khác sau dòng này*/ 
 
-/* phần tạo schema này thì tạo từng dòng*/
 CREATE SCHEMA LECTURERS
 GO
 CREATE SCHEMA ACCOUNT
@@ -157,7 +155,8 @@ WHERE u.StudentID = (SELECT s.StudentID
 FROM STUDENT.InforList s
 JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
 WHERE d.Username = 'Anh12')
-
+GO
+	
 /*xem điểm*/
 SELECT CourseName, Inclass,Midterm, Final 
 FROM STUDENT.Grades g
@@ -169,11 +168,11 @@ WHERE d.Username = 'Anh12') AND SemesterID = (
 SELECT SemesterID
 FROM SEMESTERS.InforList
 WHERE SemesterNumber = 2 AND YEAR =2020 )
-
+GO
 
 /*xác định studentid từ username*/
 SELECT s.StudentID 
 FROM STUDENT.InforList s
 JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
 WHERE d.Username = 'Anh12'
-
+GO
