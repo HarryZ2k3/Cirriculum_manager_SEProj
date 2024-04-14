@@ -3,14 +3,16 @@ GO
 	
 USE STUDENTRECORDS; 
 GO
-// sau khi tạo và use database thì xóa và bắt đầu chạy các commands khác sau dòng này 
+/*sau khi tạo và use database thì xóa và bắt đầu chạy các commands khác sau dòng này*/ 
 
-
+/* phần tạo schema này thì tạo từng dòng*/
 CREATE SCHEMA LECTURERS
 CREATE SCHEMA ACCOUNT
 CREATE SCHEMA DEPARTMENTS
 CREATE SCHEMA COURSES
 CREATE SCHEMA SEMESTERS
+CREATE SCHEMA STUDENT
+
 
 
 
