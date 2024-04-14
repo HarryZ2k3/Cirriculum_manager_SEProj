@@ -44,7 +44,7 @@ Password varchar(50) not null
 GO
 
 CREATE TABLE DEPARTMENTS.InforList(
-DepartmentID bigint identity(1,1) not null,
+DepartmentID bigint  not null,
 DepartmentName varchar (50) not null, 
 primary key(DepartmentID),
 )
@@ -53,7 +53,7 @@ ADD UNIQUE (DepartmentName);
 GO
 
 CREATE TABLE LECTURERS.InforList (
-	LID BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY, 
+	LID BIGINT  NOT NULL PRIMARY KEY, 
 	LName VARCHAR(35) not null ,
 	Gender VARCHAR(6) not null,
 	Position VARCHAR(50) not null, 
@@ -63,7 +63,7 @@ CREATE TABLE LECTURERS.InforList (
 GO
 	
 CREATE TABLE STUDENT.InforList (
-StudentID bigint identity(1,1) not null,
+StudentID bigint  not null,
 StudentName varchar(50) not null,
 AchievedCredit int,
 GPA decimal(3,2),
@@ -77,7 +77,7 @@ foreign key (DepartmentID) references DEPARTMENTS.InforList(DepartmentID)
 GO 
 	
 CREATE TABLE COURSES.InforList (
-CourseID bigint identity(1,1) not null,
+CourseID bigint not null,
 CourseName varchar(50) not null,
 Credit int not null,
 primary key(CourseID)
@@ -90,7 +90,7 @@ GO
 
 
 CREATE TABLE SEMESTERS.InforList(
-SemesterID bigint identity(1,1) not null primary key, 
+SemesterID bigint not null primary key, 
 SemesterNumber int not null,
 StartDate date not null,
 EndDate date not null,
