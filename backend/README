@@ -1,2 +1,5 @@
-B1: nhập npm i
-B2: nhập npm start
+B1: tạo database và insert dữ liệu (Saving records.sql và INSERT_INTO.sql)
+B2: tạo tài khoản sql (đọc folder "tạo tài khoản sql")
+B3: sửa code trong file "connect.js" (thay đổi mật khẩu và username tương ứng với tài khoản sql của mình)
+B4: nhập npm i
+B5: nhập npm start
