@@ -145,6 +145,15 @@ ALTER TABLE LECTURERS.InforList
 ADD CONSTRAINT unique_la unique(AccountID);
 GO
 
+CREATE TABLE STUDENT.TA(
+CourseID bigint not null,
+TAID bigint not null,
+primary key(TAID, CourseID),
+foreign key (TAID) references STUDENT.InforList(StudentID),
+foreign key (CourseID) references COURSES.InforList(CourseID)
+)
+go
+
 /*xem curriculum*/
 SELECT CourseName, Credit
 FROM DEPARTMENTS.curriculum e
