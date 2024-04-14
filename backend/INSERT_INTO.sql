@@ -21,75 +21,6 @@ VALUES (1, 'A1.101' ),
 (20, 'A2.508')
 go
 
-INSERT INTO STUDENT.InforList ( StudentName, Major, Gender)
-VALUES ('Nguyen Cong Binh', 'Technology', 'Male'),
-('Tran Dai Doanh', 'Arts', 'Female'),
-('Tran Thanh Dat', 'BA', 'Male'),
-('Nguyen Cong Ly', 'IT', 'male'),
-('Pham Thai Tue', 'Education', 'male'),
-('Tran Khanh Vy', 'Bioengineering', 'female'),
-('Dai Thanh Cong', 'Genetics', 'male'),
-('Ly Cong Danh', 'Psychology', 'male'),
-('Nguyen Tran Thai Vy', 'Marketing', 'female'),
-('Tran Quoc Toan', 'Finance', 'male'),
-('Nguyen Cong Minh', 'Engineering', 'female'),
-('Tran Nhat Phuong', 'Humanities', 'female'),
-('Le Duc Anh', 'Social Sciences', 'male'),
-('Le Duc Duy', 'Architecture', 'male'),
-('Pham Nhat Tan', 'Communications', 'male'),
-('Tran Ngoc Anh Thu', 'Animal Science', 'female'),
-('Tran Anh Ngoc', 'Agriculture', 'female'),
-('Tran Tuyet Nhi', 'Law and Politics', 'female'),
-('Pham Anh Quan', 'Natural Sciences', 'male'),
-('Nguyen Anh Hao', 'Construction trades', 'male')
-go
-  
-INSERT INTO LECTURERS.InforList (LName, Gender, Position)
-VALUES ('Nguyen Van Anh', 'Male', 'Principle'),
-('Tran Thi Binh', 'Female', 'Associate Professor'),
-('Ly Cong Danh', 'Male', 'Professor'),
-('Nguyen Thi Hien', 'Female', 'Professor'),
-('Bui Dang Khoa', 'Male', 'Visiting Professor'),
-('Duong Dinh Ngoc', 'Female', 'Assistant Professor'),
-('Le Duc Thinh', 'Male', 'Assistant Professor'),
-('Ngo Trung Tinh', 'Male', 'Assistant Professor'),
-('Nguyen Trung Truong', 'Male', 'Professor'),
-('Doan Ngoc Vy', 'Female', 'Adjunct Professor'),
-('Doan Thoai Ngoc Hau', 'Male', 'Lecturer'),
-('Le Dieu My', 'Female', 'Visiting Professor'),
-('Pham Binh Minh', 'Male', 'Assistant Professor'),
-('Le Anh Ngoc', 'Female', 'Professor'),
-('Ton That Thang', 'Male', 'Professor'),
-('Nguyen Thuy Tien', 'Female', 'Professor'),
-('Tran Anh Vy', 'Female', 'Professor'),
-('Le Ngoc Vy', 'Male', 'Adjunct Professor'),
-('Nguyen Ngoc Hai', 'Male', 'Adjunct Professor'),
-('Nguyen Thai Binh', 'Male', 'Adjunct Professor')
-go
-  
-INSERT INTO COURSES.InforList (CourseName, Credit)
-VALUES ('DLD', 2),
-('Calculus 1', 3),
-('Physic 2', 3),
-('Physic 1', 4),
-('Calculus 2', 4),
-('Calculus 3', 4),
-('Oop', 5),
-('Pdm', 4),
-('Se', 4),
-('Tmc', 2),
-('Chemistry 1', 2),
-('Chemistry 2', 2),
-('History and Politics', 4),
-('Materials Science', 3),
-('Modern Languages and Linguistics', 4),
-('Medicine', 3),
-('Computer Science and Philosophy', 4),
-('Law', 3),
-('Psychology, Philosophy and Linguistics', 4),
-('Biology', 3)
-go
-
 INSERT INTO ACCOUNT.StudentAccounts (SAID, Username, Password)
 VALUES (1,'Anh12', '1234'),
 (2, 'Bon2', '2345'), 
@@ -108,80 +39,164 @@ VALUES (1,'Anh12', '1234'),
 (15, 'Lucky', '366'),
 (16, 'lukey', '777'),
 (17, 'Zac', '6514'),
-(18, 'Newbait', 1975),
-(19, 'Oldbait', 2020),
-(20, 'Midbait', 222)
+(18, 'Newbait', '1975'),
+(19, 'Oldbait', '2020'),
+(20, 'Midbait', '222')
+go
+
+INSERT INTO ACCOUNT.AdminAccounts (AdminID, Username, Password)
+VALUES (1,'An1', '123'),
+(2, 'Binh2', '234'), 
+(3, 'Dai3', '345'),
+(4, 'Cong9', '456'),
+(5, 'Chanh8', '567'),
+(6, 'Hung4', '678'),
+(7, 'Ong21', '789'),
+(8, 'Kinh2', '890'),
+(9, 'Tuan56', '321'),
+(10, 'Nguyen26', '432'),
+(11,'Anh123', '111'),
+(12, 'Banh12', '222'), 
+(13, 'Daoi3', '333'),
+(14, 'Coang19', '444'),
+(15, 'Chayn83', '555'),
+(16, 'Hung45', '667'),
+(17, 'Oang21', '777'),
+(18, 'Kong255', '888'),
+(19, 'Tian16', '999'),
+(20, 'Nguyen96', '10000')
+go
+  
+INSERT INTO ACCOUNT.LecturerAccounts (LAID, Username, Password)
+VALUES (1,'An12', '1234'),
+(2, 'Bin2', '2345'), 
+(3, 'Dai23', '3456'),
+(4, 'Con9', '4567'),
+(5, 'Cha8', '5678'),
+(6, 'Hut4', '6789'),
+(7, 'On21', '7890'),
+(8, 'Kin2', '8901'),
+(9, 'Tun56', '4321'),
+(10, 'Ngaen26', '5432'),
+(11,'Gogo12', '12345'),
+(12, 'Ban2', '23456'), 
+(13, 'Daisuke12', '34567'),
+(14, 'Conga9', '45678'),
+(15, 'Chaein8', '56789'),
+(16, 'Hutao4', '67890'),
+(17, 'Oni21', '78901'),
+(18, 'Kigan2', '89012'),
+(19, 'Tunay56', '43213'),
+(20, 'Ngago26', '54329')
+go
+
+INSERT INTO DEPARTMENTS.InforList (DepartmentID, DepartmentName)
+VALUES (1, 'Busines'),
+(2, 'Information Technology'),
+(3, 'Health Professions'),
+(4, 'Social Sciences and History'),
+(5, 'Engineering'),
+(6, 'Psychology'),
+(7, 'Visual and Performing Arts'),
+(8, 'Education'),
+(9, 'Biological and Biomedical Sciences'),
+(10, 'Communication and Journalism'),
+(11, 'Law and Politics'),
+(12, 'Bioengineering'),
+(13, 'Natural Sciences'),
+(14, 'Marketing'),
+(15, 'Arts'),
+(16, 'Construction trades'),
+(17, 'Architecture'),
+(18, 'Finance'),
+(19, 'Technology'),
+(20, 'BA')
+go
+  
+
+INSERT INTO STUDENT.InforList (StudentID, StudentName, SAID, DepartmentID, Gender)
+VALUES (1, 'Nguyen Cong Binh', 1, 1, 'Male'),
+(2, 'Tran Dai Doanh', 2, 2, 'Female'),
+(3, 'Tran Thanh Dat', 3, 3, 'Male'),
+(4, 'Nguyen Cong Ly', 4, 4, 'male'),
+(5, 'Pham Thai Tue', 5, 5, 'male'),
+(6, 'Tran Khanh Vy', 6, 6, 'female'),
+(7, 'Dai Thanh Cong', 7, 7, 'male'),
+(8, 'Ly Cong Danh', 8, 8, 'male'),
+(9, 'Nguyen Tran Thai Vy', 9, 9, 'female'),
+(10, 'Tran Quoc Toan', 10, 10, 'male'),
+(11, 'Nguyen Cong Minh', 11, 11, 'female'),
+(12, 'Tran Nhat Phuong', 12, 12, 'female'),
+(13, 'Le Duc Anh', 13, 13, 'male'),
+(14, 'Le Duc Duy', 14, 14, 'male'),
+(15, 'Pham Nhat Tan', 15, 15, 'male'),
+(16, 'Tran Ngoc Anh Thu', 16, 16, 'female'),
+(17, 'Tran Anh Ngoc', 17, 17, 'female'),
+(18, 'Tran Tuyet Nhi', 18, 18, 'female'),
+(19, 'Pham Anh Quan', 19, 19, 'male'),
+(20, 'Nguyen Anh Hao', 20, 20, 'male')
+go
+  
+INSERT INTO LECTURERS.InforList (LID, LName, Gender, Position, AccountID)
+VALUES (1, 'Nguyen Van Anh', 'Male', 'Principle', 9),
+(2, 'Tran Thi Binh', 'Female', 'Associate Professor', 2),
+(3, 'Ly Cong Danh', 'Male', 'Professor', 3),
+(4, 'Nguyen Thi Hien', 'Female', 'Professor', 4),
+(5, 'Bui Dang Khoa', 'Male', 'Visiting Professor', 5),
+(6, 'Duong Dinh Ngoc', 'Female', 'Assistant Professor', 6),
+(7, 'Le Duc Thinh', 'Male', 'Assistant Professor', 7),
+(8, 'Ngo Trung Tinh', 'Male', 'Assistant Professor', 8),
+(9, 'Nguyen Trung Truong', 'Male', 'Professor', 1),
+(10, 'Doan Ngoc Vy', 'Female', 'Adjunct Professor', 10),
+(11, 'Doan Thoai Ngoc Hau', 'Male', 'Lecturer', 11),
+(12, 'Le Dieu My', 'Female', 'Visiting Professor', 12),
+(13, 'Pham Binh Minh', 'Male', 'Assistant Professor', 13),
+(14, 'Le Anh Ngoc', 'Female', 'Professor', 14),
+(15, 'Ton That Thang', 'Male', 'Professor', 15),
+(16, 'Nguyen Thuy Tien', 'Female', 'Professor', 16),
+(17, 'Tran Anh Vy', 'Female', 'Professor', 17),
+(18, 'Le Ngoc Vy', 'Male', 'Adjunct Professor', 18),
+(19, 'Nguyen Ngoc Hai', 'Male', 'Adjunct Professor', 19),
+(20, 'Nguyen Thai Binh', 'Male', 'Adjunct Professor', 20)
+go
+  
+INSERT INTO COURSES.InforList (CourseID, CourseName, Credit)
+VALUES (1, 'DLD', 2),
+(2, 'Calculus 1', 3),
+(3, 'Physic 2', 3),
+(4, 'Physic 1', 4),
+(5, 'Calculus 2', 4),
+(6, 'Calculus 3', 4),
+(7, 'Oop', 5),
+(8, 'Pdm', 4),
+(9, 'Se', 4),
+(10, 'Tmc', 2),
+(11, 'Chemistry 1', 2),
+(12, 'Chemistry 2', 2),
+(13, 'History and Politics', 4),
+(14, 'Materials Science', 3),
+(15, 'Modern Languages and Linguistics', 4),
+(16, 'Medicine', 3),
+(17, 'Computer Science and Philosophy', 4),
+(18, 'Law', 3),
+(19, 'Psychology, Philosophy and Linguistics', 4),
+(20, 'Biology', 3)
+go
+
+/*không nhập dòng này
+DBCC CHECKIDENT ('SEMESTERS.InforList', RESEED, 0); 
+*/
+
+
+INSERT INTO SEMESTERS.InforList (SemesterID, SemesterNumber, StartDate, EndDate, Year)
+VALUES (1, 1, '2021-01-4', '2021-04-30', 2020),
+(2, 2, '2021-05-09', '2021-08-31', 2020),
+(3, 3, '2021-09-01', '2021-12-30', 2020),
+(4, 1, '2021-01-03', '2021-04-30', 2021),
+(5, 2, '2021-05-01', '2021-08-30', 2021)
 go
 
 
-INSERT INTO SEMESTERS.InforList (SemesterNumber, StartDate, EndDate, Year)
-VALUES (1, '2020-9-4', '2021-1-24', 2020),
-(1, '2021-02-19', '2021-06-06', 2021),
-(1, '2021-06-21', '2021-08-03', 2021),
-(2, '2022-02-19', '2022-06-03', 2022),
-(2, '2022-02-26', '2022-06-05', 2022),
-(2, '2022-02-27', '2022-06-08', 2022),
-(3, '2022-07-19', '2022-08-29', 2022),
-(3, '2022-07-21', '2022-08-30', 2022),
-(3, '2022-07-25', '2022-08-27', 2022),
-(1, '2022-09-04', '2024-01-23', 2023),
-(2, '2023-02-14', '2023-05-23', 2023),
-(2, '2023-02-13', '2023-06-03', 2023),
-(2, '2023-02-24', '2023-06-23', 2023),
-(3, '2023-07-04', '2024-08-29', 2023),
-(3, '2023-07-05', '2023-08-30', 2023),
-(3, '2023-07-14', '2023-09-03', 2023),
-(1, '2023-10-04', '2024-01-23', 2024),
-(1, '2023-09-24', '2024-01-29', 2023),
-(1, '2023-09-28', '2024-01-26', 2023)
-go
-  
-INSERT INTO DEPARTMENTS.InforList (DepartmentName)
-VALUES ('Busines'),
-('Information Technology'),
-('Health Professions'),
-('Social Sciences and History'),
-('Engineering'),
-('Psychology'),
-('Visual and Performing Arts'),
-('Education'),
-('Biological and Biomedical Sciences'),
-('Communication and Journalism'),
-('Law and Politics'),
-('Bioengineering'),
-('Natural Sciences'),
-('Marketing'),
-('Arts'),
-('Construction trades'),
-('Architecture'),
-('Finance'),
-('Technology'),
-('BA')
-go
-  
-INSERT INTO STUDENT.ENROLLMENT (StudentID, CourseID)
-VALUES (1, 2),
-(2, 8),
-(3, 9),
-(4, 6),
-(5, 1),
-(6, 3),
-(7, 10),
-(8, 4),
-(9, 5),
-(10, 2),
-(11, 19),
-(12, 14),
-(13, 16),
-(14, 18),
-(15, 17),
-(16, 11),
-(17, 13),
-(18, 15),
-(19, 20),
-(20, 12
-go
-  
 INSERT INTO DEPARTMENTS.curriculum (DepartmentID, CourseID)
 VALUES (1, 1),
 (1, 2),
@@ -210,30 +225,7 @@ VALUES (1, 1),
 (5, 10)
 go
 
-INSERT INTO DEPARTMENTS.TaughtPlace (RoomID, CourseID)
-VALUES (1, 4),
-(2, 5),
-(3, 10),
-(4, 1),
-(5, 6),
-(6, 9),
-(7, 3),
-(8, 2),
-(9, 8),
-(10, 7),
-(11, 19),
-(12, 17),
-(13, 18),
-(14, 20),
-(15, 16),
-(16, 12),
-(17, 13),
-(18, 11),
-(19, 14),
-(20, 15)
-go
-
-INSERT INTO STUDENT.TA (CourseID, StudentID)
+INSERT INTO STUDENT.TA (CourseID, TAID)
 VALUES (1, 9),
 (2, 6),
 (3, 7),
@@ -246,7 +238,7 @@ VALUES (1, 9),
 (10, 2),
 (11, 18),
 (12, 20),
-(13, 18),
+(13, 19),
 (14, 17),
 (15, 14),
 (16, 11),
@@ -261,10 +253,42 @@ VALUES (1, 1, 1, 90, 50, 30),
 (1, 2, 1, 40, 60, 50),
 (1, 3, 1, 50, 70, 60),
 (1, 4, 1, 52, 74, 38),
+(1, 5, 2, 90, 50, 30),
+(1, 6, 2, 90, 50, 30),
+(1, 7, 2, 90, 50, 30),
+(1, 8, 2, 90, 50, 30),
+(1, 9, 3, 90, 50, 30),
+(1, 10, 3, 40, 60, 50),
+(1, 11, 3, 50, 70, 60),
+(1, 12, 3, 52, 74, 38),
+(1, 13, 4, 90, 50, 30),
+(1, 14, 4, 40, 60, 50),
+(1, 15, 4, 50, 70, 60),
+(1, 16, 4, 52, 74, 38),
+(1, 17, 5, 90, 50, 30),
+(1, 18, 5, 40, 60, 50),
+(1, 19, 5, 50, 70, 60),
+(1, 20, 5, 52, 74, 38),
 (2, 1, 1, 60, 73, 61),
 (2, 2, 1, 30, 79, 68),
 (2, 3, 1, 41, 85, 69),
 (2, 4, 1, 10, 49, 67),
+(2, 5, 2, 90, 50, 30),
+(2, 6, 2, 90, 50, 30),
+(2, 7, 2, 90, 50, 30),
+(2, 8, 2, 90, 50, 30),
+(2, 9, 3, 90, 50, 30),
+(2, 10, 3, 40, 60, 50),
+(2, 11, 3, 50, 70, 60),
+(2, 12, 3, 52, 74, 38),
+(2, 13, 4, 90, 50, 30),
+(2, 14, 4, 40, 60, 50),
+(2, 15, 4, 50, 70, 60),
+(2, 16, 4, 52, 74, 38),
+(2, 17, 5, 90, 50, 30),
+(2, 18, 5, 40, 60, 50),
+(2, 19, 5, 50, 70, 60),
+(2, 20, 5, 52, 74, 38),
 (3, 1, 1, 80, 81, 82),
 (3, 2, 1, 42, 92, 90),
 (3, 3, 1, 70, 20, 91),
@@ -338,50 +362,5 @@ VALUES (1, 1, 1, 90, 50, 30),
 (20, 3, 1, 73.5, 74.5, 75.5),
 (20, 4, 1, 74.5, 75.5, 76.5)
 go
-  
-INSERT INTO ACCOUNT.AdminAccounts (AdminID, Username, Password)
-VALUES (1,'An1', '123'),
-(2, 'Binh2', '234'), 
-(3, 'Dai3', '345'),
-(4, 'Cong9', '456'),
-(5, 'Chanh8', '567'),
-(6, 'Hung4', '678'),
-(7, 'Ong21', '789'),
-(8, 'Kinh2', '890'),
-(9, 'Tuan56', '321'),
-(10, 'Nguyen26', '432'),
-(11,'Anh123', '111'),
-(12, 'Banh12', '222'), 
-(13, 'Daoi3', '333'),
-(14, 'Coang19', '444'),
-(15, 'Chayn83', '555'),
-(16, 'Hung45', '667'),
-(17, 'Oang21', '777'),
-(18, 'Kong255', '888'),
-(19, 'Tian16', '999'),
-(20, 'Nguyen96', '10000')
-go
-  
-INSERT INTO ACCOUNT.LecturerAccounts (LAID, Username, Password)
-VALUES (1,'An12', '1234'),
-(2, 'Bin2', '2345'), 
-(3, 'Dai23', '3456'),
-(4, 'Con9', '4567'),
-(5, 'Cha8', '5678'),
-(6, 'Hut4', '6789'),
-(7, 'On21', '7890'),
-(8, 'Kin2', '8901'),
-(9, 'Tun56', '4321'),
-(10, 'Ngaen26', '5432'),
-(11,'Gogo12', '12345'),
-(12, 'Ban2', '23456'), 
-(13, 'Daisuke12', '34567'),
-(14, 'Conga9', '45678'),
-(15, 'Chaein8', '56789'),
-(16, 'Hutao4', '67890'),
-(17, 'Oni21', '78901'),
-(18, 'Kigan2', '89012'),
-(19, 'Tunay56', '43213'),
-(20, 'Ngago26', '54329')
-go
+ 
 
