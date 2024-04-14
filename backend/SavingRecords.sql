@@ -48,8 +48,8 @@ CREATE TABLE STUDENT.InforList (
 StudentID bigint identity(1,1) not null,
 StudentName varchar(50) not null,
 AchievedCredit int,
-GPA decimal(3,2)
-Gender varchar(6),
+GPA decimal(3,2),
+Gender varchar(6) not null,
 SAID bigint not null, 
 DepartmentID bigint not null,
 primary key(StudentID),
