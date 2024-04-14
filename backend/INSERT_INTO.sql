@@ -19,31 +19,29 @@ VALUES (1, 'A1.101' ),
 (18, 'A2.408'),
 (19, 'A2.503'),
 (20, 'A2.508')
-go
 
-INSERT INTO STUDENT.InforList ( StudentName, Major, Gender)
-VALUES ('Nguyen Cong Binh', 'Technology', 'Male'),
-('Tran Dai Doanh', 'Arts', 'Female'),
-('Tran Thanh Dat', 'BA', 'Male'),
-('Nguyen Cong Ly', 'IT', 'male'),
-('Pham Thai Tue', 'Education', 'male'),
-('Tran Khanh Vy', 'Bioengineering', 'female'),
-('Dai Thanh Cong', 'Genetics', 'male'),
-('Ly Cong Danh', 'Psychology', 'male'),
-('Nguyen Tran Thai Vy', 'Marketing', 'female'),
-('Tran Quoc Toan', 'Finance', 'male'),
-('Nguyen Cong Minh', 'Engineering', 'female'),
-('Tran Nhat Phuong', 'Humanities', 'female'),
-('Le Duc Anh', 'Social Sciences', 'male'),
-('Le Duc Duy', 'Architecture', 'male'),
-('Pham Nhat Tan', 'Communications', 'male'),
-('Tran Ngoc Anh Thu', 'Animal Science', 'female'),
-('Tran Anh Ngoc', 'Agriculture', 'female'),
-('Tran Tuyet Nhi', 'Law and Politics', 'female'),
-('Pham Anh Quan', 'Natural Sciences', 'male'),
-('Nguyen Anh Hao', 'Construction trades', 'male')
-go
-  
+INSERT INTO STUDENT.InforList ( StudentName, SAID, DepartmentID, Gender)
+VALUES ('Nguyen Cong Binh', 1, 1, 'Male'),
+('Tran Dai Doanh', 2, 2, 'Female'),
+('Tran Thanh Dat', 3, 3, 'Male'),
+('Nguyen Cong Ly', 4, 4, 'male'),
+('Pham Thai Tue', 5, 5, 'male'),
+('Tran Khanh Vy', 6, 6, 'female'),
+('Dai Thanh Cong', 7, 7, 'male'),
+('Ly Cong Danh', 8, 8, 'male'),
+('Nguyen Tran Thai Vy', 9, 9, 'female'),
+('Tran Quoc Toan', 10, 10, 'male'),
+('Nguyen Cong Minh', 11, 11, 'female'),
+('Tran Nhat Phuong', 12, 12, 'female'),
+('Le Duc Anh', 13, 13, 'male'),
+('Le Duc Duy', 14, 14, 'male'),
+('Pham Nhat Tan', 15, 15, 'male'),
+('Tran Ngoc Anh Thu', 16, 16, 'female'),
+('Tran Anh Ngoc', 17, 17, 'female'),
+('Tran Tuyet Nhi', 18, 18, 'female'),
+('Pham Anh Quan', 19, 19, 'male'),
+('Nguyen Anh Hao', 20, 20, 'male')
+
 INSERT INTO LECTURERS.InforList (LName, Gender, Position)
 VALUES ('Nguyen Van Anh', 'Male', 'Principle'),
 ('Tran Thi Binh', 'Female', 'Associate Professor'),
@@ -65,8 +63,7 @@ VALUES ('Nguyen Van Anh', 'Male', 'Principle'),
 ('Le Ngoc Vy', 'Male', 'Adjunct Professor'),
 ('Nguyen Ngoc Hai', 'Male', 'Adjunct Professor'),
 ('Nguyen Thai Binh', 'Male', 'Adjunct Professor')
-go
-  
+
 INSERT INTO COURSES.InforList (CourseName, Credit)
 VALUES ('DLD', 2),
 ('Calculus 1', 3),
@@ -88,7 +85,7 @@ VALUES ('DLD', 2),
 ('Law', 3),
 ('Psychology, Philosophy and Linguistics', 4),
 ('Biology', 3)
-go
+
 
 INSERT INTO ACCOUNT.StudentAccounts (SAID, Username, Password)
 VALUES (1,'Anh12', '1234'),
@@ -111,31 +108,23 @@ VALUES (1,'Anh12', '1234'),
 (18, 'Newbait', 1975),
 (19, 'Oldbait', 2020),
 (20, 'Midbait', 222)
-go
+
+
+
+/*không nhập dòng này
+DBCC CHECKIDENT ('SEMESTERS.InforList', RESEED, 0); 
+*/
 
 
 INSERT INTO SEMESTERS.InforList (SemesterNumber, StartDate, EndDate, Year)
-VALUES (1, '2020-9-4', '2021-1-24', 2020),
-(1, '2021-02-19', '2021-06-06', 2021),
-(1, '2021-06-21', '2021-08-03', 2021),
-(2, '2022-02-19', '2022-06-03', 2022),
-(2, '2022-02-26', '2022-06-05', 2022),
-(2, '2022-02-27', '2022-06-08', 2022),
-(3, '2022-07-19', '2022-08-29', 2022),
-(3, '2022-07-21', '2022-08-30', 2022),
-(3, '2022-07-25', '2022-08-27', 2022),
-(1, '2022-09-04', '2024-01-23', 2023),
-(2, '2023-02-14', '2023-05-23', 2023),
-(2, '2023-02-13', '2023-06-03', 2023),
-(2, '2023-02-24', '2023-06-23', 2023),
-(3, '2023-07-04', '2024-08-29', 2023),
-(3, '2023-07-05', '2023-08-30', 2023),
-(3, '2023-07-14', '2023-09-03', 2023),
-(1, '2023-10-04', '2024-01-23', 2024),
-(1, '2023-09-24', '2024-01-29', 2023),
-(1, '2023-09-28', '2024-01-26', 2023)
-go
-  
+VALUES (1, '2021-01-4', '2021-04-30', 2020),
+(2, '2021-05-09', '2021-08-31', 2020),
+(3, '2021-09-01', '2021-12-30', 2020),
+(1, '2021-01-03', '2021-04-30', 2021),
+(2, '2021-05-01', '2021-08-30', 2021),
+
+
+
 INSERT INTO DEPARTMENTS.InforList (DepartmentName)
 VALUES ('Busines'),
 ('Information Technology'),
@@ -157,8 +146,7 @@ VALUES ('Busines'),
 ('Finance'),
 ('Technology'),
 ('BA')
-go
-  
+
 INSERT INTO STUDENT.ENROLLMENT (StudentID, CourseID)
 VALUES (1, 2),
 (2, 8),
@@ -180,8 +168,7 @@ VALUES (1, 2),
 (18, 15),
 (19, 20),
 (20, 12
-go
-  
+
 INSERT INTO DEPARTMENTS.curriculum (DepartmentID, CourseID)
 VALUES (1, 1),
 (1, 2),
@@ -208,7 +195,7 @@ VALUES (1, 1),
 (5, 8),
 (5, 9),
 (5, 10)
-go
+
 
 INSERT INTO DEPARTMENTS.TaughtPlace (RoomID, CourseID)
 VALUES (1, 4),
@@ -231,7 +218,7 @@ VALUES (1, 4),
 (18, 11),
 (19, 14),
 (20, 15)
-go
+
 
 INSERT INTO STUDENT.TA (CourseID, StudentID)
 VALUES (1, 9),
@@ -254,17 +241,49 @@ VALUES (1, 9),
 (18, 16),
 (19, 15),
 (20, 13)
-go
+
 
 INSERT INTO STUDENT.Grades (StudentID, CourseID, SemesterID, Midterm, Final, Inclass)
 VALUES (1, 1, 1, 90, 50, 30),
 (1, 2, 1, 40, 60, 50),
 (1, 3, 1, 50, 70, 60),
 (1, 4, 1, 52, 74, 38),
+(1, 5, 2, 90, 50, 30),
+(1, 6, 2, 90, 50, 30),
+(1, 7, 2, 90, 50, 30),
+(1, 8, 2, 90, 50, 30),
+(1, 9, 3, 90, 50, 30),
+(1, 10, 3, 40, 60, 50),
+(1, 11, 3, 50, 70, 60),
+(1, 12, 3, 52, 74, 38),
+(1, 13, 4, 90, 50, 30),
+(1, 14, 4, 40, 60, 50),
+(1, 15, 4, 50, 70, 60),
+(1, 16, 4, 52, 74, 38),
+(1, 17, 5, 90, 50, 30),
+(1, 18, 5, 40, 60, 50),
+(1, 19, 5, 50, 70, 60),
+(1, 20, 5, 52, 74, 38),
 (2, 1, 1, 60, 73, 61),
 (2, 2, 1, 30, 79, 68),
 (2, 3, 1, 41, 85, 69),
 (2, 4, 1, 10, 49, 67),
+(2, 5, 2, 90, 50, 30),
+(2, 6, 2, 90, 50, 30),
+(2, 7, 2, 90, 50, 30),
+(2, 8, 2, 90, 50, 30),
+(2, 9, 3, 90, 50, 30),
+(2, 10, 3, 40, 60, 50),
+(2, 11, 3, 50, 70, 60),
+(2, 12, 3, 52, 74, 38),
+(2, 13, 4, 90, 50, 30),
+(2, 14, 4, 40, 60, 50),
+(2, 15, 4, 50, 70, 60),
+(2, 16, 4, 52, 74, 38),
+(2, 17, 5, 90, 50, 30),
+(2, 18, 5, 40, 60, 50),
+(2, 19, 5, 50, 70, 60),
+(2, 20, 5, 52, 74, 38),
 (3, 1, 1, 80, 81, 82),
 (3, 2, 1, 42, 92, 90),
 (3, 3, 1, 70, 20, 91),
@@ -337,8 +356,7 @@ VALUES (1, 1, 1, 90, 50, 30),
 (20, 2, 1, 100, 91.5, 92.5),
 (20, 3, 1, 73.5, 74.5, 75.5),
 (20, 4, 1, 74.5, 75.5, 76.5)
-go
-  
+
 INSERT INTO ACCOUNT.AdminAccounts (AdminID, Username, Password)
 VALUES (1,'An1', '123'),
 (2, 'Binh2', '234'), 
@@ -360,8 +378,7 @@ VALUES (1,'An1', '123'),
 (18, 'Kong255', '888'),
 (19, 'Tian16', '999'),
 (20, 'Nguyen96', '10000')
-go
-  
+
 INSERT INTO ACCOUNT.LecturerAccounts (LAID, Username, Password)
 VALUES (1,'An12', '1234'),
 (2, 'Bin2', '2345'), 
@@ -383,5 +400,5 @@ VALUES (1,'An12', '1234'),
 (18, 'Kigan2', '89012'),
 (19, 'Tunay56', '43213'),
 (20, 'Ngago26', '54329')
-go
+
 
