@@ -10,16 +10,6 @@ import axios from 'axios'
 import BarChart from './BarChart.jsx';
 import SelectionTable from './SelectionTable.jsx';
 
-// const SubjectDetails = ({ selectedSubject }) => (
-//     <div>
-//         <h2>{selectedSubject.name}</h2>
-//         <p>Inclass: {selectedSubject.inclass}</p>
-//         <p>Mid: {selectedSubject.mid}</p>
-//         <p>Final: {selectedSubject.final}</p>
-//         <p>Average: {selectedSubject.avg.toFixed(2)}</p>
-//     </div>
-// );
-
 export default function Subject() {
     const [selectedSubject, setSelectedSubject] = useState(null);
     const [dataSubject, setDataSubject] = useState([])
@@ -40,18 +30,18 @@ export default function Subject() {
     return (
         <div className='Subject_root'>
             <h1>Welcome to Subject page</h1>
-            <div>
+            <div className='Selection_table'>
                 {/* <SelectionTable trancript ={subjs}  onSelection = {handleSubjectClick}/> */}
 
             </div>
-            <div style={{ display: 'flex' }}>
-                <div style={{ flex: 1 }}>
-                    {/* {dataSubject.length > 0 ? 
+            <div className='subject_content'>
+                <div className='subject-transcript' >
+                    {dataSubject.length > 0 ? 
                         <SubjectTable subjects={dataSubject} onSubjectClick={handleSubjectClick} />
                         : <p>loading...</p>
-                    } */}
+                    } 
                 </div>
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 0 }}>
                    
                     {/* <RenderLineChart labels={ labels} data={data} /> */}
                    {/* {selectedSubject && 

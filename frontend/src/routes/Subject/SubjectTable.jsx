@@ -1,11 +1,13 @@
-const SubjectTable = ({ subjects, onSubjectClick }) => (
+import PropTypes from 'prop-types'
+import './subjectTable.css'
+export const SubjectTable = ({ subjects, onSubjectClick }) => (
     <div>
         {subjects.map((semester, semesterIndex) => (
             <div key={semesterIndex} className="semester-table">
-                <h2>Semester {semesterIndex + 1}</h2>
+                <h2 className='semester_title'>Semester {semesterIndex + 1}</h2>
                 <table className="subjectTable">
                     <thead>
-                        <tr>
+                        <tr className="title-semester">
                             <th>Subject </th>
                             <th>Inclass</th>
                             <th>Mid</th>
@@ -29,4 +31,8 @@ const SubjectTable = ({ subjects, onSubjectClick }) => (
         ))}
     </div>
 );
+
+// SubjectTable.PropTypes = {
+
+// }
 export default SubjectTable;

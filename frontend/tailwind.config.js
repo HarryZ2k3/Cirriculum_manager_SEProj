@@ -14,7 +14,17 @@ export default {
 				secondary: '#416847',
         dark: '#070807',
 				accent: '#E4E7E4', 
-				
+			
+			//subject color
+				subjectBackground: '#FFFFCC',
+				tableTextColor: '#000000',
+				tableTitleBorder: '#000000',
+				tableBorderColor: '#dddddd',
+				subjectHover:'#FFE5CC',
+				subjectTextHover:'#FFB266',
+				titleText: 'blue',
+				//tableTitleBack: ''
+
 			},
 			// Optionally customize other theme values such as fonts, spacing, etc.
 			fontFamily: {
