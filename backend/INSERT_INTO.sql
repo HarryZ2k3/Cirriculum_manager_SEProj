@@ -19,6 +19,7 @@ VALUES (1, 'A1.101' ),
 (18, 'A2.408'),
 (19, 'A2.503'),
 (20, 'A2.508')
+go
 
 INSERT INTO STUDENT.InforList ( StudentName, Major, Gender)
 VALUES ('Nguyen Cong Binh', 'Technology', 'Male'),
@@ -41,7 +42,8 @@ VALUES ('Nguyen Cong Binh', 'Technology', 'Male'),
 ('Tran Tuyet Nhi', 'Law and Politics', 'female'),
 ('Pham Anh Quan', 'Natural Sciences', 'male'),
 ('Nguyen Anh Hao', 'Construction trades', 'male')
-
+go
+  
 INSERT INTO LECTURERS.InforList (LName, Gender, Position)
 VALUES ('Nguyen Van Anh', 'Male', 'Principle'),
 ('Tran Thi Binh', 'Female', 'Associate Professor'),
@@ -63,7 +65,8 @@ VALUES ('Nguyen Van Anh', 'Male', 'Principle'),
 ('Le Ngoc Vy', 'Male', 'Adjunct Professor'),
 ('Nguyen Ngoc Hai', 'Male', 'Adjunct Professor'),
 ('Nguyen Thai Binh', 'Male', 'Adjunct Professor')
-
+go
+  
 INSERT INTO COURSES.InforList (CourseName, Credit)
 VALUES ('DLD', 2),
 ('Calculus 1', 3),
@@ -85,7 +88,7 @@ VALUES ('DLD', 2),
 ('Law', 3),
 ('Psychology, Philosophy and Linguistics', 4),
 ('Biology', 3)
-
+go
 
 INSERT INTO ACCOUNT.StudentAccounts (SAID, Username, Password)
 VALUES (1,'Anh12', '1234'),
@@ -108,17 +111,7 @@ VALUES (1,'Anh12', '1234'),
 (18, 'Newbait', 1975),
 (19, 'Oldbait', 2020),
 (20, 'Midbait', 222)
-
-
-
-
-DBCC CHECKIDENT ('SEMESTERS.InforList', RESEED, 0); 
-
-ALTER TABLE STUDENT.InforList
-ADD DepartmentID bigint;
-
-ALTER TABLE COURSES.InforList
-DROP COLUMN Major; (quan trong)
+go
 
 
 INSERT INTO SEMESTERS.InforList (SemesterNumber, StartDate, EndDate, Year)
@@ -141,7 +134,8 @@ VALUES (1, '2020-9-4', '2021-1-24', 2020),
 (1, '2023-10-04', '2024-01-23', 2024),
 (1, '2023-09-24', '2024-01-29', 2023),
 (1, '2023-09-28', '2024-01-26', 2023)
-
+go
+  
 INSERT INTO DEPARTMENTS.InforList (DepartmentName)
 VALUES ('Busines'),
 ('Information Technology'),
@@ -163,7 +157,8 @@ VALUES ('Busines'),
 ('Finance'),
 ('Technology'),
 ('BA')
-
+go
+  
 INSERT INTO STUDENT.ENROLLMENT (StudentID, CourseID)
 VALUES (1, 2),
 (2, 8),
@@ -185,7 +180,8 @@ VALUES (1, 2),
 (18, 15),
 (19, 20),
 (20, 12
-
+go
+  
 INSERT INTO DEPARTMENTS.curriculum (DepartmentID, CourseID)
 VALUES (1, 1),
 (1, 2),
@@ -212,7 +208,7 @@ VALUES (1, 1),
 (5, 8),
 (5, 9),
 (5, 10)
-
+go
 
 INSERT INTO DEPARTMENTS.TaughtPlace (RoomID, CourseID)
 VALUES (1, 4),
@@ -235,7 +231,7 @@ VALUES (1, 4),
 (18, 11),
 (19, 14),
 (20, 15)
-
+go
 
 INSERT INTO STUDENT.TA (CourseID, StudentID)
 VALUES (1, 9),
@@ -258,7 +254,7 @@ VALUES (1, 9),
 (18, 16),
 (19, 15),
 (20, 13)
-
+go
 
 INSERT INTO STUDENT.Grades (StudentID, CourseID, SemesterID, Midterm, Final, Inclass)
 VALUES (1, 1, 1, 90, 50, 30),
@@ -341,7 +337,8 @@ VALUES (1, 1, 1, 90, 50, 30),
 (20, 2, 1, 100, 91.5, 92.5),
 (20, 3, 1, 73.5, 74.5, 75.5),
 (20, 4, 1, 74.5, 75.5, 76.5)
-
+go
+  
 INSERT INTO ACCOUNT.AdminAccounts (AdminID, Username, Password)
 VALUES (1,'An1', '123'),
 (2, 'Binh2', '234'), 
@@ -363,7 +360,8 @@ VALUES (1,'An1', '123'),
 (18, 'Kong255', '888'),
 (19, 'Tian16', '999'),
 (20, 'Nguyen96', '10000')
-
+go
+  
 INSERT INTO ACCOUNT.LecturerAccounts (LAID, Username, Password)
 VALUES (1,'An12', '1234'),
 (2, 'Bin2', '2345'), 
@@ -385,5 +383,5 @@ VALUES (1,'An12', '1234'),
 (18, 'Kigan2', '89012'),
 (19, 'Tunay56', '43213'),
 (20, 'Ngago26', '54329')
-
+go
 
