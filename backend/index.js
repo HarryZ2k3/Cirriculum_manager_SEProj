@@ -21,15 +21,38 @@ res.send('hello');
 
 })
 
-app.get ('/course', async (req, res)=>{ 
-    // Xem điểm
-    const pool = await connect;
-    // const sqlString = "SELECT CourseName, Inclass,Midterm, Final FROM STUDENT.Grades g JOIN COURSES.InforList c  ON c.CourseID = g.CourseID WHERE g.StudentID = (SELECT StudentID  FROM STUDENT.InforList s JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID WHERE d.Username = 'Anh12') AND SemesterID = ( SELECT SemesterID FROM SEMESTERS.InforList WHERE SemesterNumber = 2 AND YEAR =2020 );";
-    const sqlString = "SELECT * FROM COURSES.InforList";
-    return await pool.request().query(sqlString,function(err,data){
-      res.send({result: data.recordset});
-    });
-  })
+
+  // Xem khóa học
+ app.get('/course', async (req, res) => { 
+    try {
+        const pool = await connect;
+        const sqlString = "SELECT * FROM COURSES.InforList";
+        console.log(sqlString);
+        
+        pool.request().query(sqlString, function(err, data) {
+            if (err) {
+                console.error('SQL error:', err);
+                res.status(500).send('Error fetching course data');
+            } else {
+                res.send({ result: data.recordset });
+            }
+        });
+    } catch (error) {
+        console.error('Database connection error:', error);
+        res.status(500).send('Error connecting to database');
+    }
+});
+
+
+  // Xem điểm
+app.get ('/StudentGrades', async(req, res)=>{
+  let params=req.query
+  let studentid=params.STUDENTID;
+  let statement= 'SELECT CourseName, Inclass,Midterm, Final FROM STUDENT.Grades g JOIN COURSES.InforList c  
+    ON c.CourseID = g.CourseID WHERE g.StudentID = (SELECT StudentID  FROM STUDENT.InforList s JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID 
+    WHERE d.Username = 'Anh12') AND SemesterID = ( SELECT SemesterID FROM SEMESTERS.InforList WHERE SemesterNumber = 2 AND YEAR =2020 );
+  
+   
 
 
 app.listen(port, () => {
