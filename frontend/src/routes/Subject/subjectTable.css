@@ -11,7 +11,7 @@
     
 }
 .subjectTable {
-    @apply border-tableBorderColor border-collapse w-full text-tableTextColor
+    @apply h-full w-full border-tableBorderColor border-collapse w-full text-tableTextColor
     ;
 }
 

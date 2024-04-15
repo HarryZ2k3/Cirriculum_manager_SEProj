@@ -28,8 +28,11 @@ export default function Subject() {
         setSelectedSubject(subject);
     };    
     return (
+        <Transition className="flex flex-grow bg-gradient-to-b from-background_top from-0% via-background_mid via-66% to-background_bottom to-100%" >
         <div className='Subject_root'>
-            <h1>Welcome to Subject page</h1>
+            <h1 className="text-center align-middle text-[3rem] text-text_blue tracking-wider" >
+                List of registered subjects
+            </h1>
             <div className='Selection_table'>
                 {/* <SelectionTable trancript ={subjs}  onSelection = {handleSubjectClick}/> */}
 
@@ -49,6 +52,7 @@ export default function Subject() {
                 </div>
             </div>
         </div>
+        </Transition>
     );
 }
 //-----------------------------------------------------------------------------

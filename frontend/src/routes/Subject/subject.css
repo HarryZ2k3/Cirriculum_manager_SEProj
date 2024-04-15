@@ -3,12 +3,21 @@
 @import 'tailwindcss/utilities';
 
 .Subject_root {
-    max-width: 1280px;
-    width: max-content;
+    /* max-width: 1280px;
+    width: max-content; */
+    @apply w-full h-1/2 flex-col ;
 }
 .subject_content{
-    @apply flex bg-gradient-to-b from-white to-subjectBackground text-tableTextColor
-    rounded-lg;
+    @apply 
+    w-full
+    h-full
+    bg-gradient-to-b from-white to-subjectBackground 
+    text-tableTextColor
+    rounded-lg 
+    flex-col 
+    gap-8 
+    overflow-y-auto 
+    z-10;
 }
 .subject-transcript{
     @apply flex-1;
