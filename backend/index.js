@@ -21,7 +21,57 @@ res.send('hello');
 
 })
 
+//kiểm tra student có ở trong database hay không
+app.get('/CheckStudent', (req, res) => {
+  let params = req.query;
+  let username = params.username;
+  let statement = `SELECT * FROM ACCOUNT.StudentAccounts WHERE Username = "${username}"`;
+  console.log(statement);
+  con.query(statement, function(error, results, fields) {
+    if (error) {
+      throw error;
+    } else {
+      return res.json({ data: results });
+    }
+  });
+});
 
+// tạo Student account
+app.get('/makeStuAccount', (req, res) => {
+  let params = req.query;
+  let ID = params.ID;
+  let username = params.username;
+  let password = params.password;
+  let gender = params.gender;
+  let department = params.department;
+  let Studentclass = params.Class;
+  let studentname = params.studentname;
+  let statement = ` INSERT INTO STUDENT.InfoList (StudentID, StudentName, Gender)
+                    VALUES ("${ID}", "${studentname}", "${gender}")`;
+  console.log(statement);
+  con.query(statement, function ( error, results, fields) {
+    if (err) {
+                console.error('SQL error:', err);
+                res.status(500).send('Error fetching course data');
+            }
+    else {
+      let sql_statement = `INSERT INTO ACCOUNT.StudentAccounts (SAID, Username, Password)
+                     VALUES ("${ID}", "${username}", "${password}")`;
+console.log(sql_statement);
+
+con.query(sql_statement, function (error, results, fields) {
+    if (error) {
+        console.error("Error occurred:", error);
+        return res.status(500).json({ error: "An error occurred while inserting data" });
+    } else {
+        username_in_use = username;
+        password_in_use = password;
+        return res.json({ data: results });
+    }
+                                                         });
+         }
+});
+        
   // Xem khóa học
  app.get('/course', async (req, res) => { 
     try {
