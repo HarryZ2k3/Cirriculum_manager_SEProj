@@ -110,9 +110,9 @@ app.get ('/StudentGrades', async(req, res)=>{
       console.log(JSON.stringify(results));
       return res.json({
         data: results
-      })
-    };
-};
+      });
+    }
+});
   
   
    
