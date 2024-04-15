@@ -26,7 +26,7 @@ res.send('hello');
  app.get('/course', async (req, res) => { 
     try {
         const pool = await connect;
-        const sqlString = "SELECT * FROM COURSES.InforList";
+        const sqlString = `SELECT * FROM COURSES.InforList"`;
         console.log(sqlString);
         
         pool.request().query(sqlString, function(err, data) {
@@ -47,10 +47,23 @@ res.send('hello');
   // Xem điểm
 app.get ('/StudentGrades', async(req, res)=>{
   let params=req.query
-  let studentid=params.STUDENTID;
-  let statement= 'SELECT CourseName, Inclass,Midterm, Final FROM STUDENT.Grades g JOIN COURSES.InforList c  
+  let username=params.USERNAME;
+  let semesterNum=params.semNum;
+  let semesteryear=params.SemYear;
+  let statement= `SELECT CourseName, Inclass,Midterm, Final FROM STUDENT.Grades g JOIN COURSES.InforList c  
     ON c.CourseID = g.CourseID WHERE g.StudentID = (SELECT StudentID  FROM STUDENT.InforList s JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID 
-    WHERE d.Username = 'Anh12') AND SemesterID = ( SELECT SemesterID FROM SEMESTERS.InforList WHERE SemesterNumber = 2 AND YEAR =2020 );
+    WHERE d.Username =  "${username}"`;) AND SemesterID = (  SELECT SemesterID  FROM SEMESTERS.InforList WHERE SemesterNumber = "{semesterNum}" 
+  AND Year = "{semesteryear}" );
+ console.log(statement);
+  if (error) throw error;
+    else {
+      console.log(JSON.stringify(results));
+      return res.json({
+        data: results
+      })
+    };
+};
+  
   
    
 
