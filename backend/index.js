@@ -71,6 +71,34 @@ con.query(sql_statement, function (error, results, fields) {
                                                          });
          }
 });
+
+  // kiểm tra xem học sinh đã đăng nhập vào chưa
+  app.get('/checkStulogin', (req, res) => {
+  let params = req.query;
+  let username = params.username;
+  let password = params.password;
+  let sql_statement = `SELECT * FROM ACCOUNT.StudentAccounts 
+                       WHERE Username="${user}" 
+                       AND Password="${password}"`;
+  console.log(sql_statement);
+  con.query(sql_statement, function (error, results, fields) {
+    if (error) {
+      console.log("error");
+      return res.status(500).json({ failed: 'error ocurred' })
+    }
+    else {
+      if (results.length === 0) {
+      } else {
+        var string = JSON.stringify(results);
+        var json = JSON.parse(string);
+        username_in_use = username;
+        password_in_use = password;
+      }
+      return res.json({
+        data: results})
+    }
+  });
+ });
         
   // Xem khóa học
  app.get('/course', async (req, res) => { 
@@ -110,7 +138,7 @@ app.get ('/StudentGrades', async(req, res)=>{
       console.log(JSON.stringify(results));
       return res.json({
         data: results
-      });
+      })
     }
 });
   
