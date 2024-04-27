@@ -1,26 +1,16 @@
 {
-  "name": "backend",
+  "name": "api-postgres",
   "version": "1.0.0",
-  "description": "B1: tạo database và insert dữ liệu (Saving records.sql và INSERT_INTO.sql)\r B2: tạo tài khoản sql (đọc folder \"tạo tài khoản sql\")\r B3: sửa code trong file \"connect.js\" (thay đổi mật khẩu và username tương ứng với tài khoản sql của mình)\r B4: nhập npm i\r B5: nhập npm start",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HarryZ2k3/Cirriculum_manager_SEProj.git"
-  },
-  "author": "tuandt",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/HarryZ2k3/Cirriculum_manager_SEProj/issues"
-  },
-  "homepage": "https://github.com/HarryZ2k3/Cirriculum_manager_SEProj#readme",
   "dependencies": {
     "express": "^4.19.2",
-    "msnodesqlv8": "^4.1.2",
-    "mssql": "^10.0.2",
-    "nodemon": "^3.1.0"
+    "pg": "^8.11.5"
   }
 }
