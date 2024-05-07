@@ -1,187 +1,108 @@
-CREATE DATABASE STUDENTRECORDS
-GO
-	
-USE STUDENTRECORDS; 
-GO
-
-CREATE SCHEMA LECTURERS
-GO
-CREATE SCHEMA ACCOUNT
-GO
-CREATE SCHEMA DEPARTMENTS
-GO
-CREATE SCHEMA COURSES
-GO
-
-CREATE SCHEMA SEMESTERS
-GO
-CREATE SCHEMA STUDENT
-GO
-
-
-
+CREATE SCHEMA LECTURERS;
+CREATE SCHEMA ACCOUNT;
+CREATE SCHEMA DEPARTMENTS;
+CREATE SCHEMA COURSES;
+CREATE SCHEMA SEMESTERS;
+CREATE SCHEMA STUDENT;
 
 CREATE TABLE ACCOUNT.AdminAccounts(
-AdminID bigint not null primary key, 
-Username varchar(50) not null,
-Password varchar(50) not null
-)
-GO
-
+    AdminID SERIAL PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL,
+    Password VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE ACCOUNT.LecturerAccounts(
-LAID bigint not null primary key, 
-Username varchar(50) not null,
-Password varchar(50) not null
-)
-GO
+    LAID SERIAL PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL,
+    Password VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE ACCOUNT.StudentAccounts(
-SAID bigint not null primary key, 
-Username varchar(50) not null,
-Password varchar(50) not null
-)
-GO
+    SAID SERIAL PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL,
+    Password VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE DEPARTMENTS.InforList(
-DepartmentID bigint  not null,
-DepartmentName varchar (50) not null, 
-primary key(DepartmentID),
-)
-ALTER TABLE DEPARTMENTS.InforList
-ADD UNIQUE (DepartmentName);
-GO
+    DepartmentID SERIAL PRIMARY KEY,
+    DepartmentName VARCHAR(50) NOT NULL
+);
+
+CREATE UNIQUE INDEX idx_department_name ON DEPARTMENTS.InforList(DepartmentName);
 
 CREATE TABLE LECTURERS.InforList (
-	LID BIGINT  NOT NULL PRIMARY KEY, 
-	LName VARCHAR(35) not null ,
-	Gender VARCHAR(6) not null,
-	Position VARCHAR(50) not null, 
-             AccountID bigint not null
-             foreign key (AccountID) references ACCOUNT.LecturerAccounts(LAID)
+    LID SERIAL PRIMARY KEY, 
+    LName VARCHAR(35) NOT NULL,
+    Gender VARCHAR(6) NOT NULL,
+    Position VARCHAR(50) NOT NULL,
+    AccountID BIGINT NOT NULL,
+    FOREIGN KEY (AccountID) REFERENCES ACCOUNT.LecturerAccounts(LAID)
 );
-GO
-	
-CREATE TABLE STUDENT.InforList (
-StudentID bigint  not null,
-StudentName varchar(50) not null,
-AchievedCredit int,
-GPA decimal(3,2),
-Gender varchar(6) not null,
-SAID bigint not null, 
-DepartmentID bigint not null,
-primary key(StudentID),
-foreign key (SAID) references ACCOUNT.StudentAccounts(SAID),
-foreign key (DepartmentID) references DEPARTMENTS.InforList(DepartmentID)
-)
-GO 
-	
-CREATE TABLE COURSES.InforList (
-CourseID bigint not null,
-CourseName varchar(50) not null,
-Credit int not null,
-primary key(CourseID)
-)
-GO
-	
-ALTER TABLE COURSES.InforList
-ADD UNIQUE (CourseName);
-GO 
 
+CREATE TABLE STUDENT.InforList (
+    StudentID SERIAL PRIMARY KEY,
+    StudentName VARCHAR(50) NOT NULL,
+    AchievedCredit INT,
+    GPA DECIMAL(3,2),
+    Gender VARCHAR(6) NOT NULL,
+    SAID BIGINT NOT NULL,
+    DepartmentID BIGINT NOT NULL,
+    FOREIGN KEY (SAID) REFERENCES ACCOUNT.StudentAccounts(SAID),
+    FOREIGN KEY (DepartmentID) REFERENCES DEPARTMENTS.InforList(DepartmentID)
+);
+
+CREATE TABLE COURSES.InforList (
+    CourseID SERIAL PRIMARY KEY,
+    CourseName VARCHAR(50) NOT NULL,
+    Credit INT NOT NULL
+);
+
+CREATE UNIQUE INDEX idx_course_name ON COURSES.InforList(CourseName);
 
 CREATE TABLE SEMESTERS.InforList(
-SemesterID bigint not null primary key, 
-SemesterNumber int not null,
-StartDate date not null,
-EndDate date not null,
-Year int not null
-)
-GO 
+    SemesterID SERIAL PRIMARY KEY,
+    SemesterNumber INT NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    Year INT NOT NULL
+);
 
-	
 CREATE TABLE DEPARTMENTS.Room(
-RoomID bigint not null,
-RoomNumber varchar(50) not null,
-primary key(RoomID)
-)
-GO
+    RoomID SERIAL PRIMARY KEY,
+    RoomNumber VARCHAR(50) NOT NULL
+);
 
-ALTER table departments.room 
-add unique (RoomNumber)
-GO
+CREATE UNIQUE INDEX idx_room_number ON DEPARTMENTS.Room(RoomNumber);
 
-	
 CREATE TABLE DEPARTMENTS.curriculum(
-DepartmentID bigint not null, 
-CourseID bigint not null,
-primary key(DepartmentID, CourseID),
-foreign key (DepartmentID) references DEPARTMENTS.InforList(DepartmentID),
-foreign key (CourseID) references COURSES.InforList(CourseID)
-)
-GO
+    DepartmentID BIGINT NOT NULL,
+    CourseID BIGINT NOT NULL,
+    PRIMARY KEY(DepartmentID, CourseID),
+    FOREIGN KEY (DepartmentID) REFERENCES DEPARTMENTS.InforList(DepartmentID),
+    FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID)
+);
 
 CREATE TABLE STUDENT.Grades(
-StudentID bigint not null, 
-CourseID bigint not null,
-SemesterID bigint not null,
-primary key(StudentID,CourseID,SemesterID),
-foreign key (StudentID) references STUDENT.InforList(StudentID),
-foreign key (CourseID) references COURSES.InforList(CourseID),
-foreign key (SemesterID) references SEMESTERS.InforList(SemesterID)
-)
-GO
-	
-ALTER TABLE STUDENT.Grades
-ADD Midterm DECIMAL(5,2) CHECK (Midterm >= 0 AND Midterm <= 100),
+    StudentID BIGINT NOT NULL,
+    CourseID BIGINT NOT NULL,
+    SemesterID BIGINT NOT NULL,
+    PRIMARY KEY(StudentID, CourseID, SemesterID),
+    FOREIGN KEY (StudentID) REFERENCES STUDENT.InforList(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID),
+    FOREIGN KEY (SemesterID) REFERENCES SEMESTERS.InforList(SemesterID),
+    Midterm DECIMAL(5,2) CHECK (Midterm >= 0 AND Midterm <= 100),
     Final DECIMAL(5,2) CHECK (Final >= 0 AND Final <= 100),
     Inclass DECIMAL(5,2) CHECK (Inclass >= 0 AND Inclass <= 100)
-GO
+);
 
-ALTER TABLE STUDENT.InforList
-ADD CONSTRAINT unique_sa unique(SAID); 
-GO 
+ALTER TABLE STUDENT.InforList ADD CONSTRAINT unique_sa UNIQUE(SAID); 
 
-ALTER TABLE LECTURERS.InforList
-ADD CONSTRAINT unique_la unique(AccountID);
-GO
+ALTER TABLE LECTURERS.InforList ADD CONSTRAINT unique_la UNIQUE(AccountID);
 
 CREATE TABLE STUDENT.TA(
-CourseID bigint not null,
-TAID bigint not null,
-primary key(TAID, CourseID),
-foreign key (TAID) references STUDENT.InforList(StudentID),
-foreign key (CourseID) references COURSES.InforList(CourseID)
-)
-go
-
-/*xem curriculum*/
-SELECT CourseName, Credit
-FROM DEPARTMENTS.curriculum e
-JOIN COURSES.InforList c  ON c.CourseID = e.CourseID
-JOIN DEPARTMENTS.InforList i ON e.DepartmentID = i.DepartmentID
-JOIN STUDENT.InforList u ON e.DepartmentID = u.DepartmentID
-WHERE u.StudentID = (SELECT s.StudentID 
-FROM STUDENT.InforList s
-JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
-WHERE d.Username = 'Anh12')
-GO
-	
-/*xem điểm*/
-SELECT CourseName, Inclass,Midterm, Final 
-FROM STUDENT.Grades g
-JOIN COURSES.InforList c  ON c.CourseID = g.CourseID
-WHERE g.StudentID = (SELECT StudentID 
-FROM STUDENT.InforList s
-JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
-WHERE d.Username = 'Anh12') AND SemesterID = (
-SELECT SemesterID
-FROM SEMESTERS.InforList
-WHERE SemesterNumber = 2 AND YEAR =2020 )
-GO
-
-/*xác định studentid từ username*/
-SELECT s.StudentID 
-FROM STUDENT.InforList s
-JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
-WHERE d.Username = 'Anh12'
-GO
+    CourseID BIGINT NOT NULL,
+    TAID BIGINT NOT NULL,
+    PRIMARY KEY(TAID, CourseID),
+    FOREIGN KEY (TAID) REFERENCES STUDENT.InforList(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID)
+);
