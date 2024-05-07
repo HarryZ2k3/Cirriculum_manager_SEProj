@@ -49,14 +49,14 @@ Follow these steps to set up the project locally.
       ```
     - Create a user and grant privileges:
       ```sql
-      CREATE USER yourusername WITH ENCRYPTED PASSWORD 'yourpassword';
-      GRANT ALL PRIVILEGES ON DATABASE student_records TO yourusername;
+      PLACEHOLDER
+      PLACEHOLDER
       ```
 
 5. Set up the environment variables. Create a `.env` file and add your configurations:
     ```bash
-    PORT=4000
-    DB_URI=postgresql://yourusername:yourpassword@localhost:5432/student_records
+    PLACEHOLDER
+    PLACEHOLDER
     ```
 
 6. Start the development server:
