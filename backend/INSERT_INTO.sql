@@ -19,7 +19,7 @@ VALUES (1, 'A1.101' ),
 (18, 'A2.408'),
 (19, 'A2.503'),
 (20, 'A2.508')
-go
+;
 
 INSERT INTO ACCOUNT.StudentAccounts (SAID, Username, Password)
 VALUES (1,'Anh12', '1234'),
@@ -42,7 +42,7 @@ VALUES (1,'Anh12', '1234'),
 (18, 'Newbait', '1975'),
 (19, 'Oldbait', '2020'),
 (20, 'Midbait', '222')
-go
+;
 
 INSERT INTO ACCOUNT.AdminAccounts (AdminID, Username, Password)
 VALUES (1,'An1', '123'),
@@ -65,7 +65,7 @@ VALUES (1,'An1', '123'),
 (18, 'Kong255', '888'),
 (19, 'Tian16', '999'),
 (20, 'Nguyen96', '10000')
-go
+;
   
 INSERT INTO ACCOUNT.LecturerAccounts (LAID, Username, Password)
 VALUES (1,'An12', '1234'),
@@ -88,7 +88,7 @@ VALUES (1,'An12', '1234'),
 (18, 'Kigan2', '89012'),
 (19, 'Tunay56', '43213'),
 (20, 'Ngago26', '54329')
-go
+;
 
 INSERT INTO DEPARTMENTS.InforList (DepartmentID, DepartmentName)
 VALUES (1, 'Busines'),
@@ -111,7 +111,7 @@ VALUES (1, 'Busines'),
 (18, 'Finance'),
 (19, 'Technology'),
 (20, 'BA')
-go
+;
   
 
 INSERT INTO STUDENT.InforList (StudentID, StudentName, SAID, DepartmentID, Gender)
@@ -135,7 +135,7 @@ VALUES (1, 'Nguyen Cong Binh', 1, 1, 'Male'),
 (18, 'Tran Tuyet Nhi', 18, 18, 'female'),
 (19, 'Pham Anh Quan', 19, 19, 'male'),
 (20, 'Nguyen Anh Hao', 20, 20, 'male')
-go
+;
   
 INSERT INTO LECTURERS.InforList (LID, LName, Gender, Position, AccountID)
 VALUES (1, 'Nguyen Van Anh', 'Male', 'Principle', 9),
@@ -158,7 +158,7 @@ VALUES (1, 'Nguyen Van Anh', 'Male', 'Principle', 9),
 (18, 'Le Ngoc Vy', 'Male', 'Adjunct Professor', 18),
 (19, 'Nguyen Ngoc Hai', 'Male', 'Adjunct Professor', 19),
 (20, 'Nguyen Thai Binh', 'Male', 'Adjunct Professor', 20)
-go
+;
   
 INSERT INTO COURSES.InforList (CourseID, CourseName, Credit)
 VALUES (1, 'DLD', 2),
@@ -181,7 +181,7 @@ VALUES (1, 'DLD', 2),
 (18, 'Law', 3),
 (19, 'Psychology, Philosophy and Linguistics', 4),
 (20, 'Biology', 3)
-go
+;
 
 /*không nhập dòng này
 DBCC CHECKIDENT ('SEMESTERS.InforList', RESEED, 0); 
@@ -194,7 +194,7 @@ VALUES (1, 1, '2021-01-4', '2021-04-30', 2020),
 (3, 3, '2021-09-01', '2021-12-30', 2020),
 (4, 1, '2021-01-03', '2021-04-30', 2021),
 (5, 2, '2021-05-01', '2021-08-30', 2021)
-go
+;
 
 
 INSERT INTO DEPARTMENTS.curriculum (DepartmentID, CourseID)
@@ -223,7 +223,7 @@ VALUES (1, 1),
 (5, 8),
 (5, 9),
 (5, 10)
-go
+;
 
 INSERT INTO STUDENT.TA (CourseID, TAID)
 VALUES (1, 9),
@@ -246,7 +246,7 @@ VALUES (1, 9),
 (18, 16),
 (19, 15),
 (20, 13)
-go
+;
 
 INSERT INTO STUDENT.Grades (StudentID, CourseID, SemesterID, Midterm, Final, Inclass)
 VALUES (1, 1, 1, 90, 50, 30),
@@ -361,6 +361,5 @@ VALUES (1, 1, 1, 90, 50, 30),
 (20, 2, 1, 100, 91.5, 92.5),
 (20, 3, 1, 73.5, 74.5, 75.5),
 (20, 4, 1, 74.5, 75.5, 76.5)
-go
+;
  
-
