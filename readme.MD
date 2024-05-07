@@ -1,6 +1,6 @@
 # Web Application for Student Records Management
 
-Welcome to the **Student Records Management Web Application** repository. This project aims to provide an efficient solution for managing student records and curriculum data. It offers data access, grade updates, curriculum viewing, and data visualization through graphs. It is designed as a practical exercise in the software engineering process as part of our Software Engineering course.
+Welcome to the **Student Records Management Web Application** repository. This project is aimed at providing an efficient solution for managing student records and curriculum data. It offers features like data access, grade updates, curriculum viewing, and data visualization through graphs. It is designed as a practical exercise in the software engineering process as part of our Software Engineering course.
 
 ## Key Features
 - **Student Data Management:** Access and manage comprehensive student records efficiently.
@@ -23,36 +23,48 @@ Follow these steps to set up the project locally.
 ### Prerequisites
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/) (Node Package Manager)
-- [MongoDB](https://www.mongodb.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ### Steps
 1. Clone the repository:
     ```bash
-    https://github.com/HarryZ2k3/Cirriculum_manager_SEProj.git
+    git clone https://github.com/HarryZ2k3/Cirriculum_manager_SEProj.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    PLACE HOLDER
+    cd student-records-management
     ```
 
 3. Install the dependencies:
     ```bash
-    PLACE HOLDER
+    npm install
     ```
 
-4. Set up the environment variables. Create a `.env` file and add your configurations:
+4. Set up the PostgreSQL database:
+    - Install and configure PostgreSQL.
+    - Create a new database:
+      ```sql
+      CREATE DATABASE student_records;
+      ```
+    - Create a user and grant privileges:
+      ```sql
+      CREATE USER yourusername WITH ENCRYPTED PASSWORD 'yourpassword';
+      GRANT ALL PRIVILEGES ON DATABASE student_records TO yourusername;
+      ```
+
+5. Set up the environment variables. Create a `.env` file and add your configurations:
     ```bash
-    PLACE HOLDER
-    PLACE HOLDER
+    PORT=4000
+    DB_URI=postgresql://yourusername:yourpassword@localhost:5432/student_records
     ```
 
-5. Start the development server:
+6. Start the development server:
     ```bash
     npm start
     ```
 
-6. Visit `http://localhost:4000` in your browser to access the application.
+7. Visit `http://localhost:4000` in your browser to access the application.
 
 ## Usage
 ### Student Data Management
