@@ -58,9 +58,30 @@ const GetInfoCourse = (request, response) => {
     );
 };
 
+// lấy ID sinh viên từ username
+const GetID=(request, respone) =>{
+    const username = request.params.username; 
+    const Password = request.params.Password;
+
+      pool.query (
+        `SELECT s.StudentID 
+          FROM STUDENT.InforList s
+          JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+          WHERE d.Username = $1 AND d.Password = $2;`, [username,Password], (error, results) => {
+            if (error) {
+                throw error;
+            }
+            else {
+                respone.status(200).json(results.rows);
+            }
+        }
+    );
+};
+
 module.exports={
     GetInfoCourse,
     getGrades,
+    GetID,
     
 }
   
