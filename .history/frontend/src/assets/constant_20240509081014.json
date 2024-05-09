@@ -1,0 +1,16 @@
+{
+    "grade_midterm": [
+        {
+        "title": "Midterm",
+        "description": "90"
+        },
+        {
+        "title": "Final",
+        "description": "100"
+        },
+        {
+        "title": "Total",
+        "description": "95"
+        }
+    ]
+}

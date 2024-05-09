@@ -1,0 +1,145 @@
+.project h2 {
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    text-align: center;
+    font-family: var(--font-sans);
+  }
+  
+  .project p {
+    color: var(--light-slate);
+    font-size: 18px;
+    line-height: 1rem;
+    margin: 14px auto 15px auto;
+    text-align: center;
+    width: 90%;
+  }
+  
+  .tabContent {
+    margin-top: 30px;
+  }
+  
+  .nav {
+    background-color: transparent;
+  }
+  
+  .navItem {
+    width: calc(100% / 3);
+  }
+  
+  
+  
+  .navItem .navLink {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 17px 0;
+    width: 100%;
+    color: var(--white);
+    font-size: 17px;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+    position: relative;
+    transition: 1s ease-in-out;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .navItem .tab1 {
+    border: 1px solid var(--light-slate);
+    border-radius: 8px 0px 0px 8px;
+  }
+  
+  .navItem .tab2 {
+    border-top: 1px solid var(--light-slate);
+    border-bottom: 1px solid var(--light-slate);
+  }
+  
+  .navItem .tab3 {
+    border: 1px solid var(--light-slate);
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .navItem .navLink::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background: var(--background-pill-active);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: 0.4s ease-in-out;
+  }
+  
+  .tabPane {
+    text-align: center;
+  }
+  
+  
+  /* Project Card CSS */
+  .proj_imgbx {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    z-index: 1;
+  }
+  
+  .proj_imgbx img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+  
+  .proj_imgbx::before {
+    content: "";
+    background: linear-gradient(90.21deg, var(--dark-navy) 0%, var(--dark-slate) 120%);
+    opacity: 0.85;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    transition: 0.4s ease-in-out;
+  }
+  
+  .proj_imgbx:hover::before {
+    height: 100%;
+  }
+  
+  .proj_imgbx:hover .proj_txtx {
+    top: 50%;
+    opacity: 1;
+  }
+  
+  .proj_txtx {
+    position: absolute;
+    text-align: center;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s ease-in-out;
+    opacity: 0;
+    width: 100%;
+  }
+  
+  .proj_txtx h4 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin-bottom: 10px;
+  }
+  
+  .proj_txtx p {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  
+  .proj_txtx .link {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: var(--fz-xxl);
+  }
+  
