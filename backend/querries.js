@@ -58,9 +58,78 @@ const GetInfoCourse = (request, response) => {
     );
 };
 
+//Lấy điểm từng môn của học sinh
+const getGradesPerCourse = (request, response) => {
+    const username = request.params.username; 
+    const SemesterNumber = request.params.SemesterNumber;
+    const Year = request.params.Year;
+    const Course = request.params.Course;
+    pool.query(
+        `SELECT c.CourseName, g.Midterm, g.Final
+        FROM STUDENT.Grades g
+        JOIN COURSES.InforList c ON g.CourseID = c.CourseID
+        JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
+        JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
+        JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
+        WHERE a.Username = $1  
+        AND s.SemesterNumber = $2
+        AND s.Year = $3
+        AND c.CourseName = $4;`, [username, SemesterNumber, Year, Course], (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(200).json(results.rows);
+            }
+        }
+    );
+};
+
+//Lấy thông tin của môn học dựa trên username học sinh
+const GetInfoCourse = (request, response) => {
+    const username = request.params.username;
+    pool.query(
+        `SELECT c.CourseName, g.Midterm, g.Final
+        FROM STUDENT.Grades g
+        JOIN COURSES.InforList c ON g.CourseID = c.CourseID
+        JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
+        JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
+        JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
+        WHERE a.Username = $1  
+        AND s.SemesterNumber = $2
+        AND s.Year = $3
+        AND c.CourseName = $4`, [username, SemesterNumber, Year, Course], (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(200).json(results.rows);
+            }
+        }
+    );
+};    
+
+// lấy ID sinh viên từ username
+const GetID=(request, respone) =>{
+    const username = request.params.username; 
+    const Password = request.params.Password;
+
+      pool.query (
+        `SELECT s.StudentID 
+          FROM STUDENT.InforList s
+          JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+          WHERE d.Username = $1 AND d.Password = $2;`, [username,Password], (error, results) => {
+            if (error) {
+                throw error;
+            }
+            else {
+                respone.status(200).json(results.rows);
+            }
+        }
+    );
+};
 module.exports={
     GetInfoCourse,
     getGrades,
-    
+    GetID,
+    getGradesPerCourse,
 }
   
