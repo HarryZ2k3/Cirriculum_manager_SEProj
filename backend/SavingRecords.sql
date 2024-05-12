@@ -106,3 +106,14 @@ CREATE TABLE STUDENT.TA(
     FOREIGN KEY (TAID) REFERENCES STUDENT.InforList(StudentID),
     FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID)
 );
+
+CREATE TABLE COURSES.TAUGHT_PEOPLE(
+CourseID bigint not null,
+SemesterID bigint not null,
+LecturerID bigint not null,
+primary key (CourseID, SemesterID,LecturerID),
+foreign key (CourseID) references COURSES.InforList(CourseID),
+foreign key (SemesterID) references SEMESTERS.InforList(SemesterID),
+foreign key (LecturerID) references LECTURERS.InforList(LID)
+)
+
