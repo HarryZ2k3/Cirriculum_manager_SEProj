@@ -16,6 +16,9 @@ app.get('/', (request, response) => {
   });
 app.get('/users/:username/:SemesterNumber/:Year',db.getGrades);
 app.get('/users/:username',db.GetInfoCourse);
+app.get('/users/:username/:Password',db.GetID);
+app.get('/users/:username/:SemesterNumber/:Year/:Course',db.getGradesPerCourse);
+
   app.listen(port, () => {
     console.log(`App running on port ${port}.`)
   });
