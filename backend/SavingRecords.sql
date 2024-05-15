@@ -117,3 +117,12 @@ foreign key (SemesterID) references SEMESTERS.InforList(SemesterID),
 foreign key (LecturerID) references LECTURERS.InforList(LID)
 )
 
+CREATE TABLE STUDENT.RegistedCourse(
+StudentID bigint not null,
+CourseID bigint not null,
+SemesterID bigint not null,
+primary key (StudentID, CourseID, SemesterID),
+foreign key (StudentID) references STUDENT.InforList(StudentID),
+foreign key (CourseID) references COURSES.InforList(CourseID),
+foreign key (SemesterID) references SEMESTERS.InforList(SemesterID),
+)
