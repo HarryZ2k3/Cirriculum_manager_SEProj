@@ -41,13 +41,15 @@ CREATE TABLE LECTURERS.InforList (
 );
 
 CREATE TABLE STUDENT.InforList (
-    StudentID SERIAL PRIMARY KEY,
+    studentcode SERIAL PRIMARY KEY,
     StudentName VARCHAR(50) NOT NULL,
     AchievedCredit INT,
     GPA DECIMAL(3,2),
     Gender VARCHAR(6) NOT NULL,
     SAID BIGINT,
     DepartmentID BIGINT NOT NULL,
+	dateofbirth date not null,
+	studentid varchar, 
     FOREIGN KEY (SAID) REFERENCES ACCOUNT.StudentAccounts(SAID),
     FOREIGN KEY (DepartmentID) REFERENCES DEPARTMENTS.InforList(DepartmentID)
 );
