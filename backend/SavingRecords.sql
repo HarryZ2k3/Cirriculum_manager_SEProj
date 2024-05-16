@@ -48,8 +48,9 @@ CREATE TABLE STUDENT.InforList (
     Gender VARCHAR(6) NOT NULL,
     SAID BIGINT,
     DepartmentID BIGINT NOT NULL,
+    batch bigint not null,	
     dateofbirth date not null,
-	studentid varchar, 
+    studentid varchar, 
     FOREIGN KEY (SAID) REFERENCES ACCOUNT.StudentAccounts(SAID),
     FOREIGN KEY (DepartmentID) REFERENCES DEPARTMENTS.InforList(DepartmentID)
 );
