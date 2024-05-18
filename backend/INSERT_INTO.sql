@@ -412,3 +412,7 @@ VALUES (1, 2, 2),
 (10, 9, 2),
 (10, 12, 2)
 ;
+
+-- test cho chức năng tự tạo id 
+insert into student.inforlist(studentcode,studentname,gender,departmentid,batch,dateofbirth)
+values (21,'Pham Minh Nguyen','male',1,1,'2002-05-03')

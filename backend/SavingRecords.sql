@@ -48,8 +48,14 @@ CREATE TABLE STUDENT.InforList (
     Gender VARCHAR(6) NOT NULL,
     SAID BIGINT,
     DepartmentID BIGINT NOT NULL,
+<<<<<<< HEAD
 	dateofbirth date not null,
 	studentid varchar, 
+=======
+    batch bigint not null,	
+    dateofbirth date not null,
+    studentid varchar, 
+>>>>>>> 10ad3967edf3b143bbc7f4768b4aa7a5757bab65
     FOREIGN KEY (SAID) REFERENCES ACCOUNT.StudentAccounts(SAID),
     FOREIGN KEY (DepartmentID) REFERENCES DEPARTMENTS.InforList(DepartmentID)
 );
@@ -153,3 +159,5 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER after_account_insert
 AFTER INSERT ON account.studentaccounts
 FOR EACH ROW EXECUTE FUNCTION update_student_inforlist();
+
+
