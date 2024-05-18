@@ -5,12 +5,17 @@ const mongoose = require('mongoose');
 require("dotenv").config();
 const app = express()
 const port = process.env.PORT || 5000;
-const uri = process.env.ATLAS_URI;
+const mongo_uri = process.env.ATLAS_URI;
 const userRoute = require('./Routes/userRoute');
 const chatRoute = require('./Routes/chatRoute');
 const messageRoute = require('./Routes/messageRouter');
+const uploadRoute = require('./Routes/uploadExcelFile');
 app.use(express.json());
 app.use(cors());
+
+// upload excel file API
+app.use("/api/v1/books/import-excel", uploadRoute);
+
 app.use("/api/users",userRoute);
 app.use("/api/chats",chatRoute);
 app.use("/api/messages", messageRoute);
@@ -20,7 +25,7 @@ app.get("/",(req, res) => {
 });
 
 mongoose
-.connect(uri, {
+.connect(mongo_uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

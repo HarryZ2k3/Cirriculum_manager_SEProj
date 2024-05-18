@@ -9,14 +9,14 @@ const UploadTest = async function(tempFilePath) {
     const failureData = [];
 
     for (const row of rows) {
-        const [studentcode,studentname,gender,departmentid,batch,dateofbirth] = row;
-        const sql = `INSERT INTO student.inforlist(studentcode,studentname,gender,departmentid,batch,dateofbirth) values ($1,$2,$3,$4,$5,$6)`;
+        const [bookid,bookname] = row;
+        const sql = `INSERT INTO book.inforlist(bookid,bookname) values ($1,$2)`;
 
         try {
-            await pool.query(sql, [studentcode,studentname,gender,departmentid,batch,dateofbirth]);
-            successData.push({studentcode,studentname,gender,departmentid,batch,dateofbirth});
+            await pool.query(sql, [bookid,bookname]);
+            successData.push({bookid,bookname});
         } catch (error) {
-            failureData.push({studentcode,studentname,gender,departmentid,batch,dateofbirth});
+            failureData.push({bookid,bookname});
         }
     }
 
