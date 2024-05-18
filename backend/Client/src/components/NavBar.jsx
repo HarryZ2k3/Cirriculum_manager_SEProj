@@ -4,7 +4,6 @@ import {Link} from "react-router-dom"
 import { useContext } from "react";
 const NavBar = () => {
     const {user,logoutUser}  = useContext(AuthContext);
-    
     return  <Navbar bg ="dark" className ="mb-4" style={{height:"3.75rem"}}>
         <Container>
             <h2>

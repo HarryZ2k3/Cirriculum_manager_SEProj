@@ -81,7 +81,7 @@ const loginUser = async(studentid,Password,req,res)=>{
 const findUser = async(req,res) =>{
   const userID = req.params.userID;
   try {
-    const user = await userModel.findById(userID);
+    const user = await accountModel.findById(userID);
     res.status(200).json(user);
   } catch(error){
     console.log(error);
@@ -91,7 +91,7 @@ const findUser = async(req,res) =>{
 
 const getUsers = async(req,res) =>{
   try {
-    const user = await userModel.find();
+    const user = await accountModel.find();
     res.status(200).json(user);
   } catch(error){
     console.log(error);

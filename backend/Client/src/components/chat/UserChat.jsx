@@ -7,10 +7,6 @@ import ChatBox from "./ChatBox";
 const UserChat = ({chat,user}) => {
     const {recipientUser} = useFetchRecipientUser(chat,user);
     const {startLoadingMessages,updateCurrentChat} = useContext(ChatContext);
-    // const handleAvatarClick = () => {
-    //     updateCurrentChat(chat);
-    //     startLoadingMessages();
-    // }
     const {onlineUsers} = useContext(ChatContext);
     const isOnline = onlineUsers?.some((user)=> user?.userId === recipientUser?._id)
     return ( 
@@ -26,7 +22,7 @@ const UserChat = ({chat,user}) => {
         </div>
         <div className="text-content">
             <div className="name">
-                {recipientUser?.name}
+                {recipientUser?.studentid}
             </div>
             <div className="text">
                 Text Message
