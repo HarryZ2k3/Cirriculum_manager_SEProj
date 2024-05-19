@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>Total Credits Chart</title>
+</head>
+
+<body>
+
+    <canvas id="line-chart" width="700" height="450"></canvas>
+    <script>
+        getData();
+
+        async function getData() {
+            try {
+                const response = await fetch('http://localhost:3000/credits/Anh12');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('API response:', data);
+
+                // Sort data by year and semester
+                const sortedData = data.sort((a, b) => (a.year === b.year) ? a.semesternumber - b.semesternumber : a.year - b.year);
+
+                if (sortedData.length === 0) {
+                    throw new Error('No data found in API response');
+                }
+
+                const labels = sortedData.map(d => `S${d.semesternumber} ${d.year}`);
+                const values = sortedData.map(d => parseInt(d.totalcredits, 10));
+
+                new Chart(document.getElementById("line-chart"), {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Total Credits",
+                            borderColor: "#3e95cd",
+                            fill: false,
+                            data: values
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Total Credits Over Semesters'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    min: 0 // Start y-axis from 0
+                                }
+                            }]
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching or processing data:', error);
+                document.body.innerHTML = `<p>Error fetching or processing data: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
