@@ -4,21 +4,14 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) =>{
     const[user,setUser] = useState(null);
-    const [registerError,setRegisterError] = useState(null);
-    const [isRegisterLoading,setIsRegisterLoading] = useState(false);
-    const [registerInfo, setRegisterInfo] = useState({
-        name : "",
-        email: "",
-        password: "",
-    }); 
     const [loginError,setLoginError] = useState(null);
     const [isLoginLoading,setIsLoginLoading] = useState(false);
    
     const [loginInfo, setLoginInfo] = useState({
-        email: "",
-        password: "",
+        StudentId: "",
+        Password: "",
     });
-
+    console.log("User: ",user);
     
     
     useEffect(()=>{
@@ -28,26 +21,9 @@ export const AuthContextProvider = ({children}) =>{
 
    
     
-    const updateRegisterInfo = useCallback((info) => {
-        setRegisterInfo(info);
-    },[])
     const updateLoginInfo = useCallback((info) => {
         setLoginInfo(info);
     },[])
-
-
-    const registerUser = useCallback(async(e) => {
-        e.preventDefault();
-        setIsRegisterLoading(true);
-        setRegisterError(null);
-        const response = await postRequest(`${baseUrl}/users/register`, JSON.stringify(registerInfo));
-        setIsRegisterLoading(false);
-        if (response.error){
-            return setRegisterError(response);
-        }
-        localStorage.setItem("User", JSON.stringify(response));
-        setUser(response);
-    },[registerInfo]);
 
     const logoutUser = useCallback(() => {
         localStorage.removeItem("User");
@@ -57,23 +33,19 @@ export const AuthContextProvider = ({children}) =>{
         e.preventDefault();
         setIsLoginLoading(true);
         setLoginError(null);
-        const response = await postRequest(`${baseUrl}/users/login`, 
-        JSON.stringify(loginInfo));
+        console.log("loginInfo: ", loginInfo);
+        const response = await postRequest(`${baseUrl}/users/login`, JSON.stringify(loginInfo));
         if(response.error){
             return setLoginError(response);
         }
         localStorage.setItem("User", JSON.stringify(response));
         setUser(response);
+        console.log("User",user);
         setIsLoginLoading(false);
     },[loginInfo])
     return (
     <AuthContext.Provider value ={{
         user,
-        registerInfo,
-        updateRegisterInfo,
-        registerUser,
-        registerError,
-        isRegisterLoading,
         logoutUser,
         loginUser,
         loginError,
