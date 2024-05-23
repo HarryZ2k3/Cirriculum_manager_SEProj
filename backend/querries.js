@@ -13,20 +13,25 @@ const getGrades = (request, response) => {
     const SemesterNumber = request.params.SemesterNumber;
     const Year = request.params.Year;
     pool.query(
-        `SELECT CourseName, Inclass, Midterm, Final 
-         FROM STUDENT.Grades g 
-         JOIN COURSES.InforList c ON c.CourseID = g.CourseID
-         WHERE g.StudentID = (
-             SELECT StudentID 
-             FROM STUDENT.InforList s
-             JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
-             WHERE d.Username = $1
-         ) 
-         AND g.SemesterID = (
-             SELECT SemesterID
-             FROM SEMESTERS.InforList
-             WHERE SemesterNumber = $2 AND Year = $3
-         )`, [username, SemesterNumber, Year], (error, results) => {
+        `SELECT 
+        g.Inclass,
+        g.Midterm,
+        g.Final,
+        (0.30 * g.Inclass + 0.30 * g.Midterm + 0.40 * g.Final) AS TotalGrade
+    FROM 
+        STUDENT.Grades g
+    JOIN 
+        COURSES.InforList c ON g.CourseID = c.CourseID
+    JOIN 
+        STUDENT.InforList s ON g.StudentID = s.StudentID
+    JOIN 
+        ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+    JOIN 
+        SEMESTERS.InforList si ON g.SemesterID = si.SemesterID
+    WHERE 
+        d.Username = $1
+        AND si.SemesterNumber = $2
+        AND si.Year = $3;`, [username, SemesterNumber, Year], (error, results) => {
             if (error) {
                 throw error;
             } else {
@@ -78,10 +83,85 @@ const GetID=(request, respone) =>{
     );
 };
 
+//Lấy điểm từng môn để làm biểu đồ
+const GradesChart = (request, response) => {
+    const username = request.params.username;
+    const SemesterNumber = request.params.SemesterNumber;
+    const SemesterYear=request.params.SemesterYear;
+    const CourseName=request.params.CourseName;
+    pool.query(
+        `SELECT g.Inclass, g.Midterm, g.Final
+        FROM STUDENT.Grades g
+        JOIN COURSES.InforList c ON g.CourseID = c.CourseID
+        JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
+        JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
+        JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
+        WHERE a.Username = $1
+        AND s.SemesterNumber = $2
+        AND s.Year = $3 
+        AND c.CourseName =$4; `, [username,SemesterNumber,SemesterYear,CourseName], (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(200).json(results.rows);
+            }
+        }
+    );
+};
+
+// lấy tổng số tín chỉ làm biểu đồ
+const GetCredit = (request, response) => {
+    const username = request.params.username; 
+    pool.query(
+        `SELECT si.SemesterNumber, si.Year, SUM(c.Credit) AS TotalCredits
+        FROM STUDENT.Grades g
+        JOIN COURSES.InforList c ON g.CourseID = c.CourseID
+        JOIN STUDENT.InforList s ON g.StudentID = s.StudentID
+        JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+        JOIN SEMESTERS.InforList si ON g.SemesterID = si.SemesterID
+        WHERE d.Username = $1
+        GROUP BY si.SemesterNumber, si.Year
+        ORDER BY si.Year, si.SemesterNumber;
+        `, [username], (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(200).json(results.rows);
+            }
+        }
+    );
+};
+
+//Lấy tổng số tín chỉ của từng học kì đạt được
+const CreditEachSem = (request, response) => {
+    const username = request.params.username; 
+    const SemesterNumber=request.params.SemesterNumber;
+    const SemesterYear=request.params.SemesterYear;
+    pool.query(
+        `SELECT SUM(c.Credit) AS TotalCredits
+        FROM STUDENT.Grades g
+        JOIN COURSES.InforList c ON g.CourseID = c.CourseID
+        JOIN STUDENT.InforList s ON g.StudentID = s.StudentID
+        JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+        JOIN SEMESTERS.InforList si ON g.SemesterID = si.SemesterID
+        WHERE d.Username = $1
+          AND si.SemesterNumber = $2
+          AND si.Year = $3;
+        
+        `, [username, SemesterNumber, SemesterYear], (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(200).json(results.rows);
+            }
+        }
+    );
+};
 module.exports={
     GetInfoCourse,
     getGrades,
     GetID,
-    
+    GetCredit,
+    GradesChart,
 }
   
