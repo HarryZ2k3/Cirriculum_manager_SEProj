@@ -90,16 +90,22 @@ const GradesChart = (request, response) => {
     const SemesterYear=request.params.SemesterYear;
     const CourseName=request.params.CourseName;
     pool.query(
-        `SELECT g.Inclass, g.Midterm, g.Final
-        FROM STUDENT.Grades g
-        JOIN COURSES.InforList c ON g.CourseID = c.CourseID
-        JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
-        JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
-        JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
-        WHERE a.Username = $1
-        AND s.SemesterNumber = $2
-        AND s.Year = $3 
-        AND c.CourseName =$4; `, [username,SemesterNumber,SemesterYear,CourseName], (error, results) => {
+        `SELECT 
+            g.Inclass, 
+            g.Midterm, 
+            g.Final,
+            (0.30 * g.Inclass + 0.30 * g.Midterm + 0.40 * g.Final) AS TotalGrade
+        FROM 
+            STUDENT.Grades g
+            JOIN COURSES.InforList c ON g.CourseID = c.CourseID
+            JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
+            JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
+            JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
+        WHERE 
+            a.Username = $1
+            AND s.SemesterNumber = $2
+            AND s.Year = $3
+            AND c.CourseName = $4 `, [username,SemesterNumber,SemesterYear,CourseName], (error, results) => {
             if (error) {
                 throw error;
             } else {
