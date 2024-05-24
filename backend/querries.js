@@ -157,11 +157,61 @@ const CreditEachSem = (request, response) => {
         }
     );
 };
+//Lấy tổng GPA cho từng học kì
+const GPAoverYears = (request, response) => {
+    const username = request.params.username; 
+    pool.query(
+        `WITH GradeDetails AS (
+            SELECT 
+                si.SemesterID,
+                si.SemesterNumber,
+                si.Year,
+                c.Credit,
+                (0.30 * g.Inclass + 0.30 * g.Midterm + 0.40 * g.Final) AS TotalGrade
+            FROM 
+                STUDENT.Grades g
+            JOIN 
+                COURSES.InforList c ON g.CourseID = c.CourseID
+            JOIN 
+                STUDENT.InforList s ON g.StudentID = s.StudentID
+            JOIN 
+                ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+            JOIN 
+                SEMESTERS.InforList si ON g.SemesterID = si.SemesterID
+            WHERE 
+                d.Username = $1
+                AND si.SemesterID IN (1, 2, 3, 4, 5)
+        )
+        SELECT 
+            SemesterID,
+            SemesterNumber,
+            Year,
+            SUM(TotalGrade * Credit) / SUM(Credit) AS GPA
+        FROM 
+            GradeDetails
+        GROUP BY 
+            SemesterID,
+            SemesterNumber,
+            Year
+        ORDER BY 
+            SemesterID;
+        
+        `, [username], (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(200).json(results.rows);
+            }
+        }
+    );
+};
 module.exports={
     GetInfoCourse,
     getGrades,
     GetID,
     GetCredit,
     GradesChart,
+    GPAoverYears,
+
 }
   
