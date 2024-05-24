@@ -16,7 +16,7 @@
         async function getData() {
             try {
                 const response = await fetch('http://localhost:3000/GPA/username');
-              //thay username bằng tên học sinh bất kì trong database vi dụ như Anh12
+              //thay username bằng tên học sinh bất kì trong database vi dụ như Anh12,
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
