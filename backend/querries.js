@@ -90,16 +90,22 @@ const GradesChart = (request, response) => {
     const SemesterYear=request.params.SemesterYear;
     const CourseName=request.params.CourseName;
     pool.query(
-        `SELECT g.Inclass, g.Midterm, g.Final
-        FROM STUDENT.Grades g
-        JOIN COURSES.InforList c ON g.CourseID = c.CourseID
-        JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
-        JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
-        JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
-        WHERE a.Username = $1
-        AND s.SemesterNumber = $2
-        AND s.Year = $3 
-        AND c.CourseName =$4; `, [username,SemesterNumber,SemesterYear,CourseName], (error, results) => {
+        `SELECT 
+            g.Inclass, 
+            g.Midterm, 
+            g.Final,
+            (0.30 * g.Inclass + 0.30 * g.Midterm + 0.40 * g.Final) AS TotalGrade
+        FROM 
+            STUDENT.Grades g
+            JOIN COURSES.InforList c ON g.CourseID = c.CourseID
+            JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
+            JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
+            JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
+        WHERE 
+            a.Username = $1
+            AND s.SemesterNumber = $2
+            AND s.Year = $3
+            AND c.CourseName = $4 `, [username,SemesterNumber,SemesterYear,CourseName], (error, results) => {
             if (error) {
                 throw error;
             } else {
@@ -157,11 +163,61 @@ const CreditEachSem = (request, response) => {
         }
     );
 };
+//Lấy tổng GPA cho từng học kì
+const GPAoverYears = (request, response) => {
+    const username = request.params.username; 
+    pool.query(
+        `WITH GradeDetails AS (
+            SELECT 
+                si.SemesterID,
+                si.SemesterNumber,
+                si.Year,
+                c.Credit,
+                (0.30 * g.Inclass + 0.30 * g.Midterm + 0.40 * g.Final) AS TotalGrade
+            FROM 
+                STUDENT.Grades g
+            JOIN 
+                COURSES.InforList c ON g.CourseID = c.CourseID
+            JOIN 
+                STUDENT.InforList s ON g.StudentID = s.StudentID
+            JOIN 
+                ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
+            JOIN 
+                SEMESTERS.InforList si ON g.SemesterID = si.SemesterID
+            WHERE 
+                d.Username = $1
+                AND si.SemesterID IN (1, 2, 3, 4, 5)
+        )
+        SELECT 
+            SemesterID,
+            SemesterNumber,
+            Year,
+            SUM(TotalGrade * Credit) / SUM(Credit) AS GPA
+        FROM 
+            GradeDetails
+        GROUP BY 
+            SemesterID,
+            SemesterNumber,
+            Year
+        ORDER BY 
+            SemesterID;
+        
+        `, [username], (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                response.status(200).json(results.rows);
+            }
+        }
+    );
+};
 module.exports={
     GetInfoCourse,
     getGrades,
     GetID,
     GetCredit,
     GradesChart,
+    GPAoverYears,
+
 }
   

@@ -26,7 +26,8 @@ app.get('/users/:username/:Password',db.GetID);
 app.get('/users/:username/:SemesterNumber/:SemesterYear/:CourseName',db.GradesChart);
 app.get('/credits/:username', db.GetCredit); // lấy tín chỉ tất cả sem
 app.get('/credits/:username/:SemesterNumber/:SemesterYear', db.CreditEachSem); //lấy tín chỉ từng semester
-  
+app.get('/GPA/:username', db.GPAoverYears);
+
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
