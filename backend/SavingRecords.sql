@@ -87,11 +87,11 @@ CREATE TABLE DEPARTMENTS.curriculum(
 );
 
 CREATE TABLE STUDENT.Grades(
-    StudentID BIGINT NOT NULL,
+    Studentcode BIGINT NOT NULL,
     CourseID BIGINT NOT NULL,
     SemesterID BIGINT NOT NULL,
-    PRIMARY KEY(StudentID, CourseID, SemesterID),
-    FOREIGN KEY (StudentID) REFERENCES STUDENT.InforList(StudentID),
+    PRIMARY KEY(Studentcode, CourseID, SemesterID),
+    FOREIGN KEY (Studentcode) REFERENCES STUDENT.InforList(Studentcode),
     FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID),
     FOREIGN KEY (SemesterID) REFERENCES SEMESTERS.InforList(SemesterID),
     Midterm DECIMAL(5,2) CHECK (Midterm >= 0 AND Midterm <= 100),
@@ -107,7 +107,7 @@ CREATE TABLE STUDENT.TA(
     CourseID BIGINT NOT NULL,
     TAID BIGINT NOT NULL,
     PRIMARY KEY(TAID, CourseID),
-    FOREIGN KEY (TAID) REFERENCES STUDENT.InforList(StudentID),
+    FOREIGN KEY (TAID) REFERENCES STUDENT.InforList(Studentcode),
     FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID)
 );
 
@@ -154,5 +154,6 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER after_account_insert
 AFTER INSERT ON account.studentaccounts
 FOR EACH ROW EXECUTE FUNCTION update_student_inforlist();
+
 
 
