@@ -1,0 +1,83 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+body {
+  background-image: url('./assets/valley.jeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+}
+.background {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient((75deg, rgb(20, 23, 33) 0%, rgb(20, 23, 33) 50%, rgb(20, 23, 33, 0.8) 100%));
+  display: table-cell;
+  vertical-align: middle;
+}
+.form-card {
+  width: 50%;
+  max-width: 350px;
+  padding: 0% 25% 0% 25%;
+}
+.form-title {
+  font-size: 42px;
+  font-family: 'Avenir';
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.auth-button {
+  width: 100%;
+  height: 53px;
+  color: azure;
+  background-color: #fa541c;
+  border: none;
+  outline: none;
+  border-radius:8px;
+  font-family: "Avenir";
+  cursor: pointer;
+  transition: all .44s ease;
+  -webkit-transition: all .44s ease;
+  -moz-transition: all.44s ease;
+}
+.auth-button:hover { filter:brightness(145%);}
