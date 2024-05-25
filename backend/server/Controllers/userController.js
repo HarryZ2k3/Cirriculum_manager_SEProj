@@ -95,23 +95,6 @@ const loginStudent = async(studentid,Password,req,res)=>{
   }
 }
 
-// const loginUser = async(studentid,Password,req,res)=>{
-//   try {
-//     let user = await accountModel.findOne({studentid});
-//     if (!user) return res.status(400).json("Invalid id or password...");
-//     const isValidPassword = await bcrypt.compare(Password,user.password);
-//     if (!isValidPassword){
-//       return res.status(400).json("Invalid id or password");
-
-//     }
-//     const token = createToken(user._id);
-
-//   res.status(200).json({_id: user._id, studentid: user.studentid, password: user.password, token});
-//   } catch(error){
-//     console.log(error);
-//     res.status(500).json({ message: 'Internal server error', error: error.message });
-//   }
-// }
 
 const loginAdmin = async(adminid,Password,req,res)=>{
   try {
