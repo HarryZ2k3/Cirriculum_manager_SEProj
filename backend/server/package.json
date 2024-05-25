@@ -1,0 +1,35 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tuandt",
+  "license": "ISC",
+  "dependencies": {
+    "@cubejs-client/core": "^0.35.23",
+    "axios": "^1.6.8",
+    "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.3.2",
+    "node-fetch": "^3.3.2",
+    "node-sass": "^9.0.0",
+    "pg": "^8.11.5",
+    "read-excel-file": "^5.8.1",
+    "socket.io": "^4.7.5",
+    "tedious": "^18.2.0",
+    "validator": "^13.11.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
