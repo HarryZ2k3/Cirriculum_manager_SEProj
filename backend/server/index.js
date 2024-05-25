@@ -32,7 +32,7 @@ app.get('/credits/:username', db.GetCredit); // lấy tín chỉ tất cả sem
 // //http://localhost:5000/credits/:username/:SemesterNumber/:SemesterYear
 app.get('/credits/:username/:SemesterNumber/:SemesterYear', db.CreditEachSem); //lấy tín chỉ từng semester
 
-
+app.get('/Grades/:username', db.GPAoverYears); // lấy GPA cho tất cả các sem
 
 // upload excel file API
 // http://localhost:5000/api/v1/books/import-excel
