@@ -20,13 +20,13 @@ CREATE TABLE ACCOUNT.LecturerAccounts(
 CREATE TABLE ACCOUNT.StudentAccounts(
     SAID SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE DEPARTMENTS.InforList(
     DepartmentID SERIAL PRIMARY KEY,
     DepartmentName VARCHAR(50) NOT NULL,
-    shortname varchar(50) not null,
+    shortname varchar(50) not null
 );
 
 CREATE UNIQUE INDEX idx_department_name ON DEPARTMENTS.InforList(DepartmentName);
