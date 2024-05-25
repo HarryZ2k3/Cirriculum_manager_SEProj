@@ -20,13 +20,13 @@ CREATE TABLE ACCOUNT.LecturerAccounts(
 CREATE TABLE ACCOUNT.StudentAccounts(
     SAID SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    password VARCHAR(50) NOT NULL,
-    email VARCHAR (50) NOT NULL
+    password VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE DEPARTMENTS.InforList(
     DepartmentID SERIAL PRIMARY KEY,
-    DepartmentName VARCHAR(50) NOT NULL
+    DepartmentName VARCHAR(50) NOT NULL,
+    shortname varchar(50) not null
 );
 
 CREATE UNIQUE INDEX idx_department_name ON DEPARTMENTS.InforList(DepartmentName);
@@ -48,14 +48,9 @@ CREATE TABLE STUDENT.InforList (
     Gender VARCHAR(6) NOT NULL,
     SAID BIGINT,
     DepartmentID BIGINT NOT NULL,
-<<<<<<< HEAD
-	dateofbirth date not null,
-	studentid varchar, 
-=======
     batch bigint not null,	
     dateofbirth date not null,
     studentid varchar, 
->>>>>>> 10ad3967edf3b143bbc7f4768b4aa7a5757bab65
     FOREIGN KEY (SAID) REFERENCES ACCOUNT.StudentAccounts(SAID),
     FOREIGN KEY (DepartmentID) REFERENCES DEPARTMENTS.InforList(DepartmentID)
 );
@@ -92,11 +87,11 @@ CREATE TABLE DEPARTMENTS.curriculum(
 );
 
 CREATE TABLE STUDENT.Grades(
-    StudentID BIGINT NOT NULL,
+    Studentcode BIGINT NOT NULL,
     CourseID BIGINT NOT NULL,
     SemesterID BIGINT NOT NULL,
-    PRIMARY KEY(StudentID, CourseID, SemesterID),
-    FOREIGN KEY (StudentID) REFERENCES STUDENT.InforList(StudentID),
+    PRIMARY KEY(Studentcode, CourseID, SemesterID),
+    FOREIGN KEY (Studentcode) REFERENCES STUDENT.InforList(Studentcode),
     FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID),
     FOREIGN KEY (SemesterID) REFERENCES SEMESTERS.InforList(SemesterID),
     Midterm DECIMAL(5,2) CHECK (Midterm >= 0 AND Midterm <= 100),
@@ -112,7 +107,7 @@ CREATE TABLE STUDENT.TA(
     CourseID BIGINT NOT NULL,
     TAID BIGINT NOT NULL,
     PRIMARY KEY(TAID, CourseID),
-    FOREIGN KEY (TAID) REFERENCES STUDENT.InforList(StudentID),
+    FOREIGN KEY (TAID) REFERENCES STUDENT.InforList(Studentcode),
     FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID)
 );
 
@@ -160,4 +155,17 @@ CREATE TRIGGER after_account_insert
 AFTER INSERT ON account.studentaccounts
 FOR EACH ROW EXECUTE FUNCTION update_student_inforlist();
 
+<<<<<<< HEAD
+CREATE TABLE STUDENT.RegistedCourse(
+Studentcode bigint not null,
+CourseID bigint not null,
+SemesterID bigint not null,
+primary key (Studentcode, CourseID, SemesterID),
+foreign key (Studentcode) references STUDENT.InforList(Studentcode),
+foreign key (CourseID) references COURSES.InforList(CourseID),
+foreign key (SemesterID) references SEMESTERS.InforList(SemesterID)
+);
+=======
 
+
+>>>>>>> c1d60148ef16bd57891d405d31dcbae2af874036
