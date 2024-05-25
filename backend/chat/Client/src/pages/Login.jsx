@@ -22,17 +22,18 @@ const Login = () => {
                         Login
                     </h2>
                     <Form.Control 
-                    type= "email" 
-                    placeholder = "Email" 
+                    type= "StudentId" 
+                    placeholder = "StudenID" 
                     onChange = {(e) => 
-                        updateLoginInfo({...loginInfo, email:e.target.value})
+                        updateLoginInfo({...loginInfo, StudentId:e.target.value})
                     }/>
                     <Form.Control 
-                    type= "password" 
+                    type= "Password" 
                     placeholder = "Password" 
                     onChange = {(e) => 
-                        updateLoginInfo({...loginInfo, password:e.target.value})
-                    }/>
+                        updateLoginInfo({...loginInfo, Password:e.target.value})
+                    }
+                    />
                     <Button variant ="primary" type = "submit">
                         {isLoginLoading?"Getting you in..." : "Login"}
                     </Button>

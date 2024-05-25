@@ -49,8 +49,8 @@ CREATE TABLE ACCOUNT.LecturerAccounts(
 
 CREATE TABLE ACCOUNT.StudentAccounts(
     SAID SERIAL PRIMARY KEY,
-    Username VARCHAR(50) NOT NULL,
-    Password VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
     email VARCHAR (50) NOT NULL
 );
 
@@ -71,13 +71,21 @@ CREATE TABLE LECTURERS.InforList (
 );
 
 CREATE TABLE STUDENT.InforList (
-    StudentID SERIAL PRIMARY KEY,
+    studentcode SERIAL PRIMARY KEY,
     StudentName VARCHAR(50) NOT NULL,
     AchievedCredit INT,
     GPA DECIMAL(3,2),
     Gender VARCHAR(6) NOT NULL,
-    SAID BIGINT NOT NULL,
+    SAID BIGINT,
     DepartmentID BIGINT NOT NULL,
+<<<<<<< HEAD
+	dateofbirth date not null,
+	studentid varchar, 
+=======
+    batch bigint not null,	
+    dateofbirth date not null,
+    studentid varchar, 
+>>>>>>> 10ad3967edf3b143bbc7f4768b4aa7a5757bab65
     FOREIGN KEY (SAID) REFERENCES ACCOUNT.StudentAccounts(SAID),
     FOREIGN KEY (DepartmentID) REFERENCES DEPARTMENTS.InforList(DepartmentID)
 );
@@ -137,3 +145,49 @@ CREATE TABLE STUDENT.TA(
     FOREIGN KEY (TAID) REFERENCES STUDENT.InforList(StudentID),
     FOREIGN KEY (CourseID) REFERENCES COURSES.InforList(CourseID)
 );
+
+
+-- insert vào thì chỉ update bản ghi đó thôi:
+CREATE OR REPLACE FUNCTION update_all_studentid()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.studentid = 'IU' || (SELECT TRIM(shortname) FROM departments.inforlist WHERE departmentid = NEW.departmentid) || NEW.Batch || NEW.studentcode;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_all_combined_info_trigger
+BEFORE INSERT ON student.inforlist
+FOR EACH ROW
+EXECUTE FUNCTION update_all_studentid();
+
+-- tự động update student account
+CREATE OR REPLACE FUNCTION update_student_account()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO account.studentaccounts (username, password) 
+    VALUES (NEW.studentid, TO_CHAR((SELECT NEW.dateofbirth FROM student.inforlist WHERE studentid = NEW.studentid), 'DDMMYYYY'));
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_studentid_insert_or_update
+AFTER INSERT OR UPDATE OF studentid ON student.inforlist
+FOR EACH ROW EXECUTE FUNCTION update_student_account();
+
+-- tự động update cột said cho student.inforlist:
+CREATE OR REPLACE FUNCTION update_student_inforlist()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE student.inforlist
+    SET said = NEW.said
+    WHERE studentid = NEW.username;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_account_insert
+AFTER INSERT ON account.studentaccounts
+FOR EACH ROW EXECUTE FUNCTION update_student_inforlist();
+
+

@@ -1,6 +1,5 @@
 import {Routes, Route, Navigate} from "react-router-dom"
 import Chat from "./pages/Chat";
-import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -16,13 +15,12 @@ function App() {
     <Container >
     <Routes>
       <Route path= "/" element ={user ? <Chat/> : <Login/>}/>
-      <Route path= "/register" element ={user ? <Chat/> : <Register/>}/>
-      <Route path= "/login" element ={user ? <Chat/> : <Login/>}/>
+      <Route path= "/login" element ={<Login/>}/>
       <Route path= "*" element ={<Navigate to ="/" />} />
-    
     </Routes>
     </Container>
-    </ChatContextProvider>
+    </ChatContextProvider> 
+    
   )
 }
 
