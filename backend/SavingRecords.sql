@@ -1,8 +1,38 @@
-CREATE SCHEMA LECTURERS;
-CREATE SCHEMA ACCOUNT;
-CREATE SCHEMA DEPARTMENTS;
-CREATE SCHEMA COURSES;
+CREATE DATABASE STUDENTRECORDS /** CREATE DATABASE VÀ CREATE SCHEMA KHÔNG THỂ CÙNG THỰC HIỆN TRONG 1 QUERY NÊN PHẢI TẠO QUERY MỚI CHO CREATE DATABASE VÀ RUN */
+
+/** SAU ĐÓ TIẾP TỤC TẠO QUERY MỚI ĐỂ THỰC HIỆN CHỨC NĂNG CREATE SCHEMA VÀ CREATE TABLE CHO DATABASE */
+/**QUERY MỚI SẼ LẤY TOÀN BỘ SQL COMMANDS BẮT ĐẦU TỪ DÒNG COMMENT NÀY ĐỔ XUỐNG*/
+
+USE STUDENTRECORDS; 
+GO
+
 CREATE SCHEMA SEMESTERS;
+GO
+
+CREATE TABLE SEMESTERS.Semesters(
+SemesterID bigint identity(1,1) not null primary key, 
+SemesterNumber int not null,
+StartDate date not null,
+EndDate date not null,
+Year int not null,
+)
+
+
+CREATE SCHEMA COURSES;
+GO
+
+CREATE TABLE COURSES.InforList (
+CourseID bigint identity(1,1) not null,
+CourseName varchar(50) not null,
+Credit int not null,
+Major varchar(50) not null,
+primary key(CourseID),
+)
+
+ALTER TABLE COURSES.InforList
+ADD UNIQUE (CourseName);
+
+
 CREATE SCHEMA STUDENT;
 
 CREATE TABLE ACCOUNT.AdminAccounts(

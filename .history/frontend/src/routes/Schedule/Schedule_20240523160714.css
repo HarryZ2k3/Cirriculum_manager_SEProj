@@ -1,0 +1,210 @@
+#ContentPlaceHolderTable1{
+    border-color:#999999;
+    border-width:1px;
+    border-style:Solid;
+    height:100%;
+    width:100%;
+    border-collapse:collapse;
+    border:solid white 1px;
+    border-radius:6px;
+}
+
+#ContentPlaceHolderTableRow{
+    height:30px;
+    text-align: center;
+
+}
+
+#ContentPlaceHolderTableCell123{
+    height:18px;
+    width:50px;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+}
+
+#ContentPlaceHolderTableCell124{
+    color:White;
+    background-color:#146C94;
+    border-width:1px;
+    border-style:solid;
+    font-size: 18px;
+    height:18px;
+    width:110px;
+    white-space:nowrap;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+    
+}
+
+#ContentPlaceHolderTableCell125{
+    color:White;
+    background-color:#146C94;
+    border-width:1px;
+    border-style:solid;
+    font-size: 18px;
+    width:110px;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+}
+
+    
+
+
+#ContentPlaceHolderTableCell126{
+    color:White;
+    background-color:#146C94;
+    border-width:1px;
+    border-style:solid;
+    font-size: 18px;
+    width:110px;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+}
+
+    
+
+
+#ContentPlaceHolderTableCell127{
+    color:White;
+    background-color:#146C94;
+    border-width:1px;
+    border-style:solid;
+    font-size: 18px;
+    width:110px;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+}
+
+    
+
+
+#ContentPlaceHolderTableCell128{
+    color:White;
+    background-color:#146C94;
+    border-width:1px;
+    border-style:solid;
+    font-size: 18px;
+    width:110px;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+}
+
+    
+
+
+#ContentPlaceHolderTableCell129{
+    color:White;
+    background-color:#146C94;
+    border-width:1px;
+    border-style:solid;
+    font-size: 18px;
+    width:110px;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+}
+
+    
+
+
+#ContentPlaceHolderTableCell130{
+    color:White;
+    background-color:#146C94;
+    border-width:1px;
+    border-style:solid;
+    font-size: 18px;
+    width:110px;
+
+    border-left:solid white 1px;
+    border-top:solid white 1px;
+
+    border-top: none;
+}
+
+
+    
+
+#ContentPlaceHolderTableCell131{
+    width:50px;
+}
+
+#ContentPlaceHolderBody1{
+    color:White;
+    background-color:#146C94;
+    border-color:Gray;
+    border-width:1px;
+    border-style:solid;
+    height:50px;
+    width:50px;
+    
+}
+
+#ContentPlaceHolderBody2{
+    border-color:Gray;
+    border-width:1px;
+    border-style:solid;
+    height:30px;
+    width:110px;
+}
+
+#ContentPlaceHolderBody3{
+    border-color:Gray;
+    border-width:1px;
+    border-style:solid;
+    height:22px;
+}
+
+#ContentPlaceHolderBody4{
+    
+}
+  
+  .center {
+    line-height: 30px;
+    height: 200px;
+    border: 3px solid green;
+    text-align: center;
+  }
+
+table {
+    border-collapse:separate;
+    border:solid black 1px;
+    border-radius:6px;
+}
+
+td, th {
+    border-left:solid  1px;
+    border-top:solid black 1px;
+}
+
+th {
+    border-top: none;
+}
+
+td:first-child, th:first-child {
+     border-left: none;
+} 
+
+
+.popoverStyle {
+  z-index
+}

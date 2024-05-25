@@ -1,0 +1,16 @@
+{
+    "grade_midterm": [
+        {
+        "title": "Midterm",
+        "description": "90"
+        },
+        {
+        "title": "Barca Gallery",
+        "description": "I am fan of Barcelona so I build this website to show my love to Barca."
+        },
+        {
+        "title": "Memory Music Game",
+        "description": "My memory is not good so I build this game to train my memory."
+        }
+    ]
+}
