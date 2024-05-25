@@ -155,6 +155,7 @@ CREATE TRIGGER after_account_insert
 AFTER INSERT ON account.studentaccounts
 FOR EACH ROW EXECUTE FUNCTION update_student_inforlist();
 
+<<<<<<< HEAD
 CREATE TABLE STUDENT.RegistedCourse(
 Studentcode bigint not null,
 CourseID bigint not null,
@@ -164,3 +165,7 @@ foreign key (Studentcode) references STUDENT.InforList(Studentcode),
 foreign key (CourseID) references COURSES.InforList(CourseID),
 foreign key (SemesterID) references SEMESTERS.InforList(SemesterID)
 );
+=======
+
+
+>>>>>>> c1d60148ef16bd57891d405d31dcbae2af874036
