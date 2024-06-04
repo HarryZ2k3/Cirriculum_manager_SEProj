@@ -122,7 +122,33 @@ const findUser = async(req,res) =>{
     res.status(200).json(user);
   } catch(error){
     console.log(error);
-    res.status(500).json({ message: 'Internal server error', error: error.message });
+    res.status(500).json({ message: 'No found user', error: error.message });
+  }
+}
+
+const changePassword = async(req,res)=>{
+  const studentid = req.params.userID;
+  const {oldPassword,newPassword, authenticatePassword} = req.body;
+  try {
+    let user = await accountModel.findOne({studentid});
+    if (!user) return res.status(400).json("User error...");
+    const isValidPassword = await bcrypt.compare(oldPassword,user.password);
+    if (!isValidPassword){
+      return res.status(400).json("Invalid old password");
+
+    }
+    if (authenticatePassword===newPassword){
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+    await user.save();
+    res.status(200).json("Successfully changed password !!!")
+  }
+  else {
+    return res.status(400).json("Wrong new password")
+  }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Cannot change password', error: error.message });
   }
 }
 
@@ -138,4 +164,4 @@ const getUsers = async(req,res) =>{
 
 
 
-module.exports = {registerUser,loginStudent, loginAdmin ,findUser, getUsers,registerbuchua};
+module.exports = {registerUser,loginStudent, loginAdmin ,findUser, getUsers,changePassword};
