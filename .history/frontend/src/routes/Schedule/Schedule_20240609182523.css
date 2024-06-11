@@ -1,0 +1,35 @@
+.schedule {
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .switch-button {
+    display: flex;
+  }
+  
+  .switch-button button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .switch-button button.active {
+    background-color: #0056b3;
+  }
+  
+  .switch-button button:hover:not(.active) {
+    background-color: #0056b3;
+  }
+  

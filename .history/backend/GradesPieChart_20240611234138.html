@@ -1,0 +1,71 @@
+<!-- Để có thể chạy phần chart, mình cài thêm CORS dependencies bằng gõ npm install cors và npm install chart.js trong terminal nhé -->
+<!-- Đồng thời phần main của backend là index.js sẽ cập nhật thêm const cors = require('cors'); và app.use(cors());-->
+<!-- Mình đã cập nhật sẵn trong phần index.js rồi nên mấy bạn chỉ cần chạy thêm lệnh npm install cors thôi nha    -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>Grades Chart</title>
+</head>
+
+<body>
+
+    <canvas id="pie-chart" width="800" height="450"></canvas>
+    <script>
+        getData();
+
+        async function getData() {
+            try {
+                const response = await fetch('http://localhost:300/users/IUBU11/2/2020/CourseName'); 
+                //http://localhost:3000/users/Anh12/2/2020/Oop
+                //đây là ví dụ về API lấy điểm học sinh thì mọi người điền theo format với bất kì học sinh nào cũng được nhé
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log('API response:', data);
+
+                if (!data || data.length === 0) {
+                    throw new Error('No data found in API response');
+                }
+
+                const grades = data[0];
+                console.log('Grades:', grades);
+
+                const labels = ['In-class', 'Midterm', 'Final'];
+                const values = [parseFloat(grades.inclass), parseFloat(grades.midterm), parseFloat(grades.final)];
+
+                console.log('Labels:', labels);
+                console.log('Values:', values);
+
+                new Chart(document.getElementById("pie-chart"), {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Grades",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                            data: values
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Grades of Course'
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching or processing data:', error);
+                document.body.innerHTML = `<p>Error fetching or processing data: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+
+</html>

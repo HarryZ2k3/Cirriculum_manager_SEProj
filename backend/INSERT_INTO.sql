@@ -1,3 +1,4 @@
+
 INSERT INTO DEPARTMENTS.Room (RoomID, RoomNumber)
 VALUES (1, 'A1.101' ),
 (2, 'A1.204'),
@@ -21,28 +22,6 @@ VALUES (1, 'A1.101' ),
 (20, 'A2.508')
 ;
 
-INSERT INTO ACCOUNT.StudentAccounts (SAID, Username, Password)
-VALUES (1,'Anh12', '1234'),
-(2, 'Bon2', '2345'), 
-(3, 'Dui23', '3456'),
-(4, 'Cun91', '4567'),
-(5, 'Cha8', '5678'),
-(6, 'Huat4', '6789'),
-(7, 'Pon21', '7890'),
-(8, 'Kinda2', '8901'),
-(9, 'Tunl56', '4321'),
-(10, 'Ngoan26', '5432'),
-(11, 'Jack', '2524'),
-(12, 'Aaron23', '2526'),
-(13, 'Dack1', '2224'),
-(14, 'Juckey', '5524'),
-(15, 'Lucky', '366'),
-(16, 'lukey', '777'),
-(17, 'Zac', '6514'),
-(18, 'Newbait', '1975'),
-(19, 'Oldbait', '2020'),
-(20, 'Midbait', '222')
-;
 
 INSERT INTO ACCOUNT.AdminAccounts (AdminID, Username, Password)
 VALUES (1,'An1', '123'),
@@ -90,51 +69,54 @@ VALUES (1,'An12', '1234'),
 (20, 'Ngago26', '54329')
 ;
 
-INSERT INTO DEPARTMENTS.InforList (DepartmentID, DepartmentName)
-VALUES (1, 'Busines'),
-(2, 'Information Technology'),
-(3, 'Health Professions'),
-(4, 'Social Sciences and History'),
-(5, 'Engineering'),
-(6, 'Psychology'),
-(7, 'Visual and Performing Arts'),
-(8, 'Education'),
-(9, 'Biological and Biomedical Sciences'),
-(10, 'Communication and Journalism'),
-(11, 'Law and Politics'),
-(12, 'Bioengineering'),
-(13, 'Natural Sciences'),
-(14, 'Marketing'),
-(15, 'Arts'),
-(16, 'Construction trades'),
-(17, 'Architecture'),
-(18, 'Finance'),
-(19, 'Technology'),
-(20, 'BA')
+
+
+INSERT INTO DEPARTMENTS.InforList (DepartmentID, DepartmentName,shortname)
+VALUES (1, 'Busines','BU'),
+(2, 'Information Technology','IT'),
+(3, 'Health Professions','HP'),
+(4, 'Social Sciences and History','SSH'),
+(5, 'Engineering','EE'),
+(6, 'Psychology','PS'),
+(7, 'Visual and Performing Arts','VPA'),
+(8, 'Education','ED'),
+(9, 'Biological and Biomedical Sciences','BBS'),
+(10, 'Communication and Journalism','CJ'),
+(11, 'Law and Politics','LP'),
+(12, 'Bioengineering','BI'),
+(13, 'Natural Sciences','NS'),
+(14, 'Marketing','MK'),
+(15, 'Arts','AT'),
+(16, 'Construction trades','CT'),
+(17, 'Architecture','AC'),
+(18, 'Finance','FI'),
+(19, 'Technology','TE'),
+(20, 'Business Administrator','BA')
 ;
   
+  
 
-INSERT INTO STUDENT.InforList (StudentID, StudentName, SAID, DepartmentID, Gender)
-VALUES (1, 'Nguyen Cong Binh', 1, 1, 'Male'),
-(2, 'Tran Dai Doanh', 2, 2, 'Female'),
-(3, 'Tran Thanh Dat', 3, 3, 'Male'),
-(4, 'Nguyen Cong Ly', 4, 4, 'male'),
-(5, 'Pham Thai Tue', 5, 5, 'male'),
-(6, 'Tran Khanh Vy', 6, 6, 'female'),
-(7, 'Dai Thanh Cong', 7, 7, 'male'),
-(8, 'Ly Cong Danh', 8, 8, 'male'),
-(9, 'Nguyen Tran Thai Vy', 9, 9, 'female'),
-(10, 'Tran Quoc Toan', 10, 10, 'male'),
-(11, 'Nguyen Cong Minh', 11, 11, 'female'),
-(12, 'Tran Nhat Phuong', 12, 12, 'female'),
-(13, 'Le Duc Anh', 13, 13, 'male'),
-(14, 'Le Duc Duy', 14, 14, 'male'),
-(15, 'Pham Nhat Tan', 15, 15, 'male'),
-(16, 'Tran Ngoc Anh Thu', 16, 16, 'female'),
-(17, 'Tran Anh Ngoc', 17, 17, 'female'),
-(18, 'Tran Tuyet Nhi', 18, 18, 'female'),
-(19, 'Pham Anh Quan', 19, 19, 'male'),
-(20, 'Nguyen Anh Hao', 20, 20, 'male')
+INSERT INTO STUDENT.InforList (Studentcode, StudentName,batch,DepartmentID, Gender,dateofbirth)
+VALUES (1, 'Nguyen Cong Binh', 1, 1, 'Male','2003-01-01'),
+(2, 'Tran Dai Doanh', 1, 2, 'Female','2003-01-02'),
+(3, 'Tran Thanh Dat', 1, 3, 'Male','2003-01-03'),
+(4, 'Nguyen Cong Ly', 1, 4, 'male','2003-01-04'),
+(5, 'Pham Thai Tue', 1, 5, 'male','2003-01-05'),
+(6, 'Tran Khanh Vy', 1, 6, 'female','2003-01-06'),
+(7, 'Dai Thanh Cong', 1, 7, 'male','2003-01-07'),
+(8, 'Ly Cong Danh', 1, 8, 'male','2003-01-08'),
+(9, 'Nguyen Tran Thai Vy', 1, 9, 'female','2003-01-09'),
+(10, 'Tran Quoc Toan', 1, 10, 'male','2003-01-10'),
+(11, 'Nguyen Cong Minh', 1, 11, 'female','2003-01-11'),
+(12, 'Tran Nhat Phuong', 1, 12, 'female','2003-01-12'),
+(13, 'Le Duc Anh', 1, 13, 'male','2003-01-13'),
+(14, 'Le Duc Duy', 1, 14, 'male','2003-01-14'),
+(15, 'Pham Nhat Tan', 1, 15, 'male','2003-01-15'),
+(16, 'Tran Ngoc Anh Thu', 2, 16, 'female','2003-01-16'),
+(17, 'Tran Anh Ngoc', 2, 17, 'female','2003-01-17'),
+(18, 'Tran Tuyet Nhi', 2, 18, 'female','2003-01-18'),
+(19, 'Pham Anh Quan', 2, 19, 'male','2003-01-19'),
+(20, 'Nguyen Anh Hao', 2, 20, 'male','2003-01-20')
 ;
   
 INSERT INTO LECTURERS.InforList (LID, LName, Gender, Position, AccountID)
@@ -183,9 +165,7 @@ VALUES (1, 'DLD', 2),
 (20, 'Biology', 3)
 ;
 
-/*không nhập dòng này
-DBCC CHECKIDENT ('SEMESTERS.InforList', RESEED, 0); 
-*/
+
 
 
 INSERT INTO SEMESTERS.InforList (SemesterID, SemesterNumber, StartDate, EndDate, Year)
@@ -248,7 +228,7 @@ VALUES (1, 9),
 (20, 13)
 ;
 
-INSERT INTO STUDENT.Grades (StudentID, CourseID, SemesterID, Midterm, Final, Inclass)
+INSERT INTO STUDENT.Grades (Studentcode, CourseID, SemesterID, Midterm, Final, Inclass)
 VALUES (1, 1, 1, 90, 50, 30),
 (1, 2, 1, 40, 60, 50),
 (1, 3, 1, 50, 70, 60),
@@ -363,7 +343,9 @@ VALUES (1, 1, 1, 90, 50, 30),
 (20, 4, 1, 74.5, 75.5, 76.5)
 ;
 
-INSERT INTO STUDENT.RegistedCourse (StundentID, CourseID, SemesterID)
+
+
+INSERT INTO STUDENT.RegistedCourse (Studentcode, CourseID, SemesterID)
 VALUES (1, 2, 2),
 (1, 1, 2),
 (1, 3, 2),
@@ -412,7 +394,3 @@ VALUES (1, 2, 2),
 (10, 9, 2),
 (10, 12, 2)
 ;
-
--- test cho chức năng tự tạo id 
-insert into student.inforlist(studentcode,studentname,gender,departmentid,batch,dateofbirth)
-values (21,'Pham Minh Nguyen','male',1,1,'2002-05-03')

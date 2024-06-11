@@ -1,0 +1,38 @@
+.profile-view-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .profile-photo-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-field-title {
+    color: #333;
+  }
+  
+  .profile-info {
+    margin-top: 8px;
+    color: #555;
+  }
+  
+  .profile-view-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  

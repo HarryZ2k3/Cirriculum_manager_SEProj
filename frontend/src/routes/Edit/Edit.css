@@ -1,0 +1,27 @@
+.profile-edit-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .profile-photo-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-avatar {
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+  }
+  
+  .profile-edit-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  

@@ -1,0 +1,36 @@
+.schedule-view {
+    padding: 20px;
+  }
+  
+  .event-container {
+    position: relative;
+  }
+  
+  .event-item {
+    padding: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  .tooltip-wrapper {
+    position: relative;
+  }
+  
+  .tooltip-content {
+    position: absolute;
+    top: -10px;
+    left: 110%;
+    width: 200px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .day-view {
+    margin-top: 20px;
+  }
+  
