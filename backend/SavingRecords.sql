@@ -1,38 +1,11 @@
-CREATE DATABASE STUDENTRECORDS /** CREATE DATABASE VÀ CREATE SCHEMA KHÔNG THỂ CÙNG THỰC HIỆN TRONG 1 QUERY NÊN PHẢI TẠO QUERY MỚI CHO CREATE DATABASE VÀ RUN */
-
-/** SAU ĐÓ TIẾP TỤC TẠO QUERY MỚI ĐỂ THỰC HIỆN CHỨC NĂNG CREATE SCHEMA VÀ CREATE TABLE CHO DATABASE */
-/**QUERY MỚI SẼ LẤY TOÀN BỘ SQL COMMANDS BẮT ĐẦU TỪ DÒNG COMMENT NÀY ĐỔ XUỐNG*/
-
-USE STUDENTRECORDS; 
-GO
-
-CREATE SCHEMA SEMESTERS;
-GO
-
-CREATE TABLE SEMESTERS.Semesters(
-SemesterID bigint identity(1,1) not null primary key, 
-SemesterNumber int not null,
-StartDate date not null,
-EndDate date not null,
-Year int not null,
-)
+CREATE DATABASE STUDENTRECORDS;
 
 
+CREATE SCHEMA LECTURERS;
+CREATE SCHEMA ACCOUNT;
+CREATE SCHEMA DEPARTMENTS;
 CREATE SCHEMA COURSES;
-GO
-
-CREATE TABLE COURSES.InforList (
-CourseID bigint identity(1,1) not null,
-CourseName varchar(50) not null,
-Credit int not null,
-Major varchar(50) not null,
-primary key(CourseID),
-)
-
-ALTER TABLE COURSES.InforList
-ADD UNIQUE (CourseName);
-
-
+CREATE SCHEMA SEMESTERS;
 CREATE SCHEMA STUDENT;
 
 CREATE TABLE ACCOUNT.AdminAccounts(
@@ -185,7 +158,7 @@ CREATE TRIGGER after_account_insert
 AFTER INSERT ON account.studentaccounts
 FOR EACH ROW EXECUTE FUNCTION update_student_inforlist();
 
-<<<<<<< HEAD
+
 CREATE TABLE STUDENT.RegistedCourse(
 Studentcode bigint not null,
 CourseID bigint not null,
@@ -195,7 +168,4 @@ foreign key (Studentcode) references STUDENT.InforList(Studentcode),
 foreign key (CourseID) references COURSES.InforList(CourseID),
 foreign key (SemesterID) references SEMESTERS.InforList(SemesterID)
 );
-=======
 
-
->>>>>>> c1d60148ef16bd57891d405d31dcbae2af874036
