@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path')
 const fileUpload = require('express-fileupload');
-const uploadGradesController = require ('../Controllers/uploadGrades')
+const uploadGradesController = require ('../Controllers/uploadGradesController')
 const router = express.Router();
 const uploadOpts = {
     useTempFiles: true,
