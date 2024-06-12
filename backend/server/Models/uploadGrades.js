@@ -1,7 +1,7 @@
 const pool = require('./index');
 const readXlsxFile = require('read-excel-file/node');
 
-const UploadTestGrades = async function(tempFilePath) {
+const UploadTest = async function(tempFilePath) {
     const rows = await readXlsxFile(tempFilePath);
     rows.shift(); 
 
@@ -9,34 +9,39 @@ const UploadTestGrades = async function(tempFilePath) {
     const failureData = [];
 
     for (const row of rows) {
-        const [studentcode, Inclass, Midterm, Final] = row;
+        const [studentcode, CourseID, SemesterID, Inclass, Midterm, Final] = row;
 
-        // Check if studentcode exists 
-        const checkStudentSql = `SELECT 1 FROM STUDENT.Students WHERE studentcode = $1`;
+        // Check if Student exists in the table
+        const checkStudentSql = `SELECT * FROM STUDENT.InforList WHERE studentcode = $1`;
         try {
-            const studentCheckResult = await pool.query(checkStudentSql, [studentcode]);
+            const studentCheckResult = await pool.query(checkStudentSql, [StudentID]);
             if (studentCheckResult.rowCount > 0) {
-                // studentcode exists insert grades
-                const insertGradeSql = `INSERT INTO STUDENT.Grades(studentcode, Inclass, Midterm, Final) VALUES ($1, $2, $3, $4)`;
-                await pool.query(insertGradeSql, [studentcode, Inclass, Midterm, Final]);
-                successData.push({studentcode, Inclass, Midterm, Final});
+                //  If  exists, insert or update grades
+                const sql = `
+                    INSERT INTO STUDENT.Grades (studentcode, CourseID, SemesterID, Inclass, Midterm, Final)
+                     VALUES ($1, $2, $3, $4, $5, $6)
+                      ON CONFLICT (username, CourseID, SemesterID)
+                       DO UPDATE SET 
+                        Inclass = EXCLUDED.Inclass, 
+                        Midterm = EXCLUDED.Midterm, 
+                         Final = EXCLUDED.Final;
+
+                `;
+// SQL này giúp ta điền điểm cho những học sinh mới chưa có cột điểm nào và cập nhật điểm mới cho bảng điểm cũ của học sinh
+                await pool.query(sql, [studentcode, CourseID, SemesterID, Inclass, Midterm, Final]);
+                successData.push({studentcode, CourseID, SemesterID, Inclass, Midterm, Final});
             } else {
-                // studentcode  not exist
+                // Student not exist in Students table
                 console.error(`studentcode ${studentcode} does not exist.`);
-                failureData.push({studentcode, Inclass, Midterm, Final, error: 'StudentID does not exist'});
+                failureData.push({studentcode, CourseID, SemesterID, Inclass, Midterm, Final, error: 'StudentID does not exist in Students table'});
             }
         } catch (error) {
-            console.error(`Error processing StudentID ${studentcode}:`, error);
-            failureData.push({studentcode, Inclass, Midterm, Final, error: error.message});
+            console.error(`Error processing studentcode ${studentcode}:`, error);
+            failureData.push({studentcode, CourseID, SemesterID, Inclass, Midterm, Final, error: error.message});
         }
     }
 
     console.log("Success Data:", successData);
     console.log("Failure Data:", failureData);
 
-    return {successData, failureData};
-}
-
-module.exports = {
-    UploadTestGrades,
-};
+    return
