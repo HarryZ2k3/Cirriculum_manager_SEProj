@@ -23,7 +23,7 @@ const getGrades = (request, response) => {
     JOIN 
         COURSES.InforList c ON g.CourseID = c.CourseID
     JOIN 
-        STUDENT.InforList s ON g.StudentID = s.StudentID
+        STUDENT.InforList s ON g.Studentcode = s.Studentcode
     JOIN 
         ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
     JOIN 
@@ -50,7 +50,7 @@ const GetInfoCourse = (request, response) => {
          JOIN COURSES.InforList c ON c.CourseID = e.CourseID
          JOIN DEPARTMENTS.InforList i ON e.DepartmentID = i.DepartmentID
          JOIN STUDENT.InforList u ON e.DepartmentID = u.DepartmentID
-         WHERE u.StudentID = (SELECT s.StudentID 
+         WHERE u.Studentcode = (SELECT s.Studentcode
                               FROM STUDENT.InforList s
                               JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
                               WHERE d.Username = $1)`, [username], (error, results) => {
@@ -69,7 +69,7 @@ const GetID=(request, respone) =>{
     const Password = request.params.Password;
 
       pool.query (
-        `SELECT s.StudentID 
+        `SELECT s.Studentcode
           FROM STUDENT.InforList s
           JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
           WHERE d.Username = $1 AND d.Password = $2;`, [username,Password], (error, results) => {
@@ -99,7 +99,7 @@ const GradesChart = (request, response) => {
             STUDENT.Grades g
             JOIN COURSES.InforList c ON g.CourseID = c.CourseID
             JOIN SEMESTERS.InforList s ON g.SemesterID = s.SemesterID
-            JOIN STUDENT.InforList st ON g.StudentID = st.StudentID
+            JOIN STUDENT.InforList st ON g.studentcode = st.studentcode
             JOIN ACCOUNT.StudentAccounts a ON st.SAID = a.SAID
         WHERE 
             a.Username = $1
@@ -122,7 +122,7 @@ const GetCredit = (request, response) => {
         `SELECT si.SemesterNumber, si.Year, SUM(c.Credit) AS TotalCredits
         FROM STUDENT.Grades g
         JOIN COURSES.InforList c ON g.CourseID = c.CourseID
-        JOIN STUDENT.InforList s ON g.StudentID = s.StudentID
+        JOIN STUDENT.InforList s ON g.studentcode = s.Studentcode
         JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
         JOIN SEMESTERS.InforList si ON g.SemesterID = si.SemesterID
         WHERE d.Username = $1
@@ -147,7 +147,7 @@ const CreditEachSem = (request, response) => {
         `SELECT SUM(c.Credit) AS TotalCredits
         FROM STUDENT.Grades g
         JOIN COURSES.InforList c ON g.CourseID = c.CourseID
-        JOIN STUDENT.InforList s ON g.StudentID = s.StudentID
+        JOIN STUDENT.InforList s ON g.Studentcode = s.Studentcode
         JOIN ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
         JOIN SEMESTERS.InforList si ON g.SemesterID = si.SemesterID
         WHERE d.Username = $1
@@ -179,7 +179,7 @@ const GPAoverYears = (request, response) => {
             JOIN 
                 COURSES.InforList c ON g.CourseID = c.CourseID
             JOIN 
-                STUDENT.InforList s ON g.StudentID = s.StudentID
+                STUDENT.InforList s ON g.Studentcode = s.Studentcode
             JOIN 
                 ACCOUNT.StudentAccounts d ON s.SAID = d.SAID
             JOIN 

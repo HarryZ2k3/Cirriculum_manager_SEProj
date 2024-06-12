@@ -12,9 +12,7 @@ const createToken = (_id) => {
 const department = require('../Models/Department');
 const { authenticateAdminId, authenticateAdminPassword } = require('../Models/Admin');
 const adminModel = require('../Models/adminModel');
-const registerbuchua = async (req,res) => {
-  res.send('register');
-}
+
 
 // [POST] /login
 const registerUser = async (req,res) => {

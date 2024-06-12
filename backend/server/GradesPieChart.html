@@ -21,8 +21,8 @@
 
         async function getData() {
             try {
-                const response = await fetch('http://localhost:5000/users/username/SemesterNumber/SemesterYear/CourseName'); 
-                //http://localhost:3000/users/Anh12/2/2020/Oop
+                const response = await fetch('http://localhost:5000/users/IUBU11/2/2020/Oop'); 
+                //http://localhost:5000/users/IUBU11/2/2020/Oop
                 //đây là ví dụ về API lấy điểm học sinh thì mọi người điền theo format với bất kì học sinh nào cũng được nhé
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

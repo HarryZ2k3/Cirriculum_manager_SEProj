@@ -15,7 +15,8 @@
     <script>
         async function getData() {
             try {
-                const response = await fetch('http://localhost:3000/GPA/username');
+                const response = await fetch('http://localhost:5000/Grades/username');
+               //  http://localhost:5000/Grades/IUBU11
               //thay username bằng tên học sinh bất kì trong database vi dụ như Anh12,
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
