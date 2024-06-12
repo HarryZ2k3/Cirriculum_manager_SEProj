@@ -1,7 +1,7 @@
 const pool = require('./index');
 const readXlsxFile = require('read-excel-file/node');
 
-const UploadTest = async function(tempFilePath) {
+const UploadTestGrades = async function(tempFilePath) {
     const rows = await readXlsxFile(tempFilePath);
     rows.shift(); 
 
