@@ -1,0 +1,29 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+.subject-row:hover {
+    /* background-color: #E0E0E0; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+    border: 1px solid black; */
+}
+.subject-row{
+    
+}
+.subjectTable {
+    @apply h-full w-full border-tableBorderColor border-collapse w-full text-tableTextColor
+    ;
+}
+
+.subjectTable th, .subjectTable td {
+    @apply border border-solid border-tableBorderColor
+    text-center ;
+}
+.semester_title{
+    @apply border-2 border-tableTitleBorder rounded-t-lg text-lg font-bold
+    text-titleText
+    w-full
+    hover:bg-subjectHover hover:cursor-pointer 
+    hover:text-red-500
+    transition-colors duration-300 ease-in
+}

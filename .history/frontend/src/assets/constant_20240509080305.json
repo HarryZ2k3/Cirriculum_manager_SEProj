@@ -1,0 +1,26 @@
+"projects_mini": [
+    {
+      "title": "Tetris Game",
+      "description": "A Game that I build when I learn Data Structure and Algorithm.",
+      "skill": "HTML, CSS, JS",
+      "imgUrl": "./img/project/mini/prj_tetris.webp",
+      "githubUrl": "https://github.com/naulkun7/Tetris-Game",
+      "linkUrl": "https://tetris-game-zeta.vercel.app/"
+    },
+    {
+      "title": "Barca Gallery",
+      "description": "I am fan of Barcelona so I build this website to show my love to Barca.",
+      "skill": "HTML, CSS",
+      "imgUrl": "./img/project/mini/prj_barcagallery.webp",
+      "githubUrl": "https://github.com/naulkun7/barca_gallery",
+      "linkUrl": "https://barca-gallery.vercel.app/"
+    },
+    {
+      "title": "Memory Music Game",
+      "description": "My memory is not good so I build this game to train my memory.",
+      "skill": "HTML, CSS, JS",
+      "imgUrl": "./img/project/mini/prj.memorymusic.webp",
+      "githubUrl": "https://github.com/naulkun7/music-memory-game",
+      "linkUrl": "https://memory-music-game.vercel.app/"
+    }
+],

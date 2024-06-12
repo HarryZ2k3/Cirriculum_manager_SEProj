@@ -1,0 +1,18 @@
+- Đầu tiên thì bật 3 cái terminal: 
++ một cái thì nhập "cd server", rồi sau đó nhập "npm i", rồi sau đó nhập tiếp "npm start"
++ một cái thì nhập "cd Client", rồi sau đó nhập "npm i", rồi sau đó nhập tiếp "npm run dev"
++ một cái thì nhập "cd socket", rồi sau đó nhập "npm i", rồi sau đó nhập tiếp"npm start"
+- Sau khi cả ba cái chạy xong thì vào trang web của "npm run dev" để test.
+- Bật 2 tab (tốt nhất là hai trình duyệt khác nhau) để có thể test socket.io đúng nhất 
+- Cách test: 
++ B1: mở hai tab khác nhau (tốt nhất là hai trình duyệt khác nhau) 
++ B2: nhấn vào chữ "login" để đăng nhập. 2 tab thì phải là 2 tài khoản đăng nhập khác nhau. 
+Account 1: 
+tien@gmail.com
+Tien12345@
+
+Account 2: 
+toan12345@gmail.com
+Toan12345@
+
+=> Lưu ý: bắt buộc 3 terminal phải chạy hết rồi thì web mới hoạt động được
