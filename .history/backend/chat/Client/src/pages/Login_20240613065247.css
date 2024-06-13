@@ -1,0 +1,30 @@
+/* Add this to your CSS file */
+html, body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* Light background color */
+    margin: 0;
+}
+
+form {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    background-color: white; /* White background for form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+}
+
